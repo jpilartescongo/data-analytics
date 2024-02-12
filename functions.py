@@ -17,7 +17,7 @@ import folium
 import cartopy.feature as cfeature
 from netCDF4 import Dataset
 
-def plot_gr_map(coords):
+def general_reference_map(coords):
   # set WGS84 as coordinate system
   coords_crs = 'EPSG:4326'
   projection = ccrs.LambertConformal()
