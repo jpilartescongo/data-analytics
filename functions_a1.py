@@ -9,7 +9,6 @@ from matplotlib.colors import LogNorm
 import cartopy.crs as ccrs
 import glob, os, time, tarfile
 from os.path import exists, join
-from IPython.display import clear_output
 import datetime as dt
 from shapely.geometry import Point
 import geopandas as gpd
