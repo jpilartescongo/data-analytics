@@ -1,3 +1,23 @@
+# Import auxiliary functions
+import numpy as np
+import netCDF4 as nc
+import pandas as pd
+import xarray as xr
+import requests
+import matplotlib.pyplot as plt
+from matplotlib.colors import LogNorm
+import cartopy.crs as ccrs
+import glob, os, time, tarfile
+from os.path import exists, join
+from IPython.display import clear_output
+import datetime as dt
+from shapely.geometry import Point
+import geopandas as gpd
+import matplotlib.tri as Tri
+import folium
+import cartopy.feature as cfeature
+from netCDF4 import Dataset
+
 def plot_gr_map(coords):
   # set WGS84 as coordinate system
   coords_crs = 'EPSG:4326'
