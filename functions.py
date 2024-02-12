@@ -48,5 +48,3 @@ def general_reference_map(coords):
   # Set the title and show the plot
   ax.set_title('Coordinates of Locations of Interest')
   plt.show()
-
-def 
