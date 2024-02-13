@@ -73,9 +73,9 @@ def conus_precip_plot(date_range, variable_name, label):
 
 # --------------------------------------------------------------------------
 # function to create subplots in a 3x2 grid
-def point_data_subplots(dataframe, attribututes, plot_title):
+def point_data_subplots(dataset, x_variable, list_of_variables, plot_title):
   list = list_of_variables
-  fig, axs = plt.subplots(5, 4, figsize=(15,10))
+  fig, axs = plt.subplots(3, 2, figsize=(20,10))
   fig.suptitle(plot_title)
 
   # loop through a list of variables to be ploted
@@ -85,12 +85,12 @@ def point_data_subplots(dataframe, attribututes, plot_title):
 
   # plots for first location (point data)
   # variables: wind, precip, min/max temp, avg temp
-  dataset.plot(x=dataframe, y=attrs[0], ax=axs[0,0])
-  dataset.plot(x=dataframe, y=attrs[1], ax=axs[0,1])
-  dataset.plot(x=dataframe, y=attrs[2], ax=axs[1,0])
-  dataset.plot(x=dataframe, y=attrs[3], ax=axs[1,1])
-  dataset.plot(x=dataframe, y=attrs[4], ax=axs[2,0])
-  dataset.plot(x=dataframe, y=attrs[4], ax=axs[2,1])
+  dataset.plot(x=x_variable, y=attrs[0], ax=axs[0,0])
+  dataset.plot(x=x_variable, y=attrs[1], ax=axs[0,1])
+  dataset.plot(x=x_variable, y=attrs[2], ax=axs[1,0])
+  dataset.plot(x=x_variable, y=attrs[3], ax=axs[1,1])
+  dataset.plot(x=x_variable, y=attrs[4], ax=axs[2,0])
+  dataset.plot(x=x_variable, y=attrs[5], ax=axs[2,1])
 
   # display plots
   return plt.show()
