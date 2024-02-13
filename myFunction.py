@@ -73,9 +73,9 @@ def conus_precip_plot(date_range, variable_name, label):
 
 # --------------------------------------------------------------------------
 # function to create subplots in a 3x2 grid
-def point_data_subplots(dataset, x_variable, list_of_variables, plot_title):
+def point_data_subplots(dataset, x_variable, list_of_variables, plot_title, fig_size):
   list = list_of_variables
-  fig, axs = plt.subplots(3, 2, figsize=(10, 10))
+  fig, axs = plt.subplots(3, 2, figsize=fig_size)
   fig.suptitle(plot_title)
 
   # loop through a list of variables to be ploted
