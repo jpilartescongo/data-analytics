@@ -7,10 +7,12 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import imageio
 
+
 # ------------------------------------------
 # clear output of colab cells
 from IPython.display import clear_output
 clear_output()
+
 
 # ------------------------------------------
 # function to plot general reference map of focus areas
@@ -41,6 +43,7 @@ def general_reference_map(coords):
   plt.show()
 
 
+# --------------------------------------------------------------------------
 # function to create animated gif of precipitation across conus
 def conus_precip_plot(date_range, variable_name, label):
   images = []
@@ -66,3 +69,25 @@ def conus_precip_plot(date_range, variable_name, label):
     
     # return images
   return images
+
+
+# --------------------------------------------------------------------------
+# function to create subplots in a 3x2 grid
+def point_data_subplots(dataset, x_variable, list_of_variables, plot_title):
+  list = list_of_variables
+  fig, axs = plt.subplots(3, 2, figsize=(10, 10))
+  fig.suptitle(plot_title)
+
+  # loop through a list of variables to be ploted
+  attrs = []
+  for i in list: 
+    attrs.append(i) 
+
+  dataset.plot(x=x_variable, y=attrs[0], ax=axs[0,0])
+  dataset.plot(x=x_variable, y=attrs[1], ax=axs[0,1])
+  dataset.plot(x=x_variable, y=attrs[2], ax=axs[1,0])
+  dataset.plot(x=x_variable, y=attrs[3], ax=axs[1,1])
+  dataset.plot(x=x_variable, y=attrs[4], ax=axs[2,0])
+  dataset.plot(x=x_variable, y=attrs[5], ax=axs[2,1])
+
+  return plt.show()
