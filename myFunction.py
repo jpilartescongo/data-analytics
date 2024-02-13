@@ -40,13 +40,14 @@ def general_reference_map(coords):
   ax.set_title('Coordinates of Locations of Interest')
   plt.show()
 
+
 # function to create animated gif of precipitation across conus
 def conus_precip_plot(date_range, variable_name, label):
   images = []
-  colorbar_label = label
   for day in date_range:
     # create temporary image file for each day
     precip_day = variable_name[day]
+    colorbar_label = 'Precipitation (mm)'
     plt.figure(figsize=(15, 6))
     ax = plt.axes(projection=ccrs.PlateCarree())
     plt.contourf(variable_name['lon'][:], variable_name['lat'][:], precip_day, transform=ccrs.PlateCarree(), cmap='viridis', vmin=0, vmax=180)
@@ -54,7 +55,7 @@ def conus_precip_plot(date_range, variable_name, label):
     
     # add gridlines and colorbar 
     ax.gridlines(draw_labels=True)
-    plt.colorbar(colorbar_label='Precipitation (mm)')
+    plt.colorbar(label=colorbar_label)
     plt.title(f'Daily Precipitation - Day {day + 1}')
 
     # save resulting file
@@ -64,4 +65,4 @@ def conus_precip_plot(date_range, variable_name, label):
     images.append(filename)
     
     # return images
-    return images
+  return images
