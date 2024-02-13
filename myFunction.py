@@ -85,7 +85,7 @@ def point_data_subplots(dataset, x_variable, list_of_variables, plot_title):
 
   # plots for first location (point data)
   # variables: wind, precip, min/max temp, avg temp
-  dataset.plot(x=x_variable, y=attrs[0], ax=axs[0,0], plt.xlabel=x_variable, plt.ylabel=attrs[0])
+  dataset.plot(x=x_variable, y=attrs[0], ax=axs[0,0])
   dataset.plot(x=x_variable, y=attrs[1], ax=axs[0,1])
   dataset.plot(x=x_variable, y=attrs[2], ax=axs[1,0])
   dataset.plot(x=x_variable, y=attrs[3], ax=axs[1,1])
