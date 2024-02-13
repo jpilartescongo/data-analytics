@@ -41,7 +41,7 @@ def general_reference_map(coords):
   plt.show()
 
 # function to create animated gif of precipitation across conus
-def conus_precip_plot(date_range, variable_name, title, label):
+def conus_precip_plot(date_range, variable_name, label):
   images = []
   colorbar_label = label
   for day in data_range:
