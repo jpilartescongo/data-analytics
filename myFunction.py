@@ -44,7 +44,7 @@ def general_reference_map(coords):
 def conus_precip_plot(date_range, variable_name, label):
   images = []
   colorbar_label = label
-  for day in data_range:
+  for day in date_range:
     # create temporary image file for each day
     precip_day = variable_name[day]
     plt.figure(figsize=(15, 6))
