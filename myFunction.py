@@ -5,6 +5,7 @@ import requests
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
+import imageio
 
 # ------------------------------------------
 # clear output of colab cells
@@ -12,6 +13,7 @@ from IPython.display import clear_output
 clear_output()
 
 # ------------------------------------------
+# function to plot general reference map of focus areas
 def general_reference_map(coords):
   # set WGS84 as coordinate system
   coords_crs = 'EPSG:4326'
@@ -37,3 +39,28 @@ def general_reference_map(coords):
   # Set the title and show the plot
   ax.set_title('Coordinates of Locations of Interest')
   plt.show()
+
+# function to create animated gif of precipitation across conus
+def conus_precip_plot(date_range, data_value, title, label):
+  images = []
+  colorbar_label = label
+  for day in data_range:
+    # create temporary image file for each day
+    precip_day = data_value[day]
+    plt.figure(figsize=(15, 6))
+    ax = plt.axes(projection=ccrs.PlateCarree())
+    plt.contourf(conus_precip_lon, conus_precip_lat, precip_day, transform=ccrs.PlateCarree(), cmap='viridis', vmin=0, vmax=180)
+    ax.coastlines()
+    
+    # add gridlines and colorbar 
+    ax.gridlines(draw_labels=True)
+    plt.colorbar(colorbar_label='Precipitation (mm)')
+    plt.title(f'Daily Precipitation - Day {day + 1}')
+
+    # save resulting file
+    filename = f'precipitation_day_{day + 1}.png'
+    plt.savefig(filename)
+    plt.close()
+    images.append(filename)
+
+    return images
