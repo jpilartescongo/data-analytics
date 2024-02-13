@@ -73,9 +73,9 @@ def conus_precip_plot(date_range, variable_name, label):
 
 # --------------------------------------------------------------------------
 # function to create subplots in a 3x2 grid
-def point_data_subplots(dataset, x_variable, list_of_variables, plot_title, fig_size):
+def point_data_subplots(dataset, station_dataframe, list_of_attributes, plot_title, fig_size):
   list = list_of_variables
-  fig, axs = plt.subplots(3, 2, figsize=fig_size)
+  fig, axs = plt.subplots(5, 4, figsize=fig_size)
   fig.suptitle(plot_title)
 
   # loop through a list of variables to be ploted
@@ -83,11 +83,62 @@ def point_data_subplots(dataset, x_variable, list_of_variables, plot_title, fig_
   for i in list: 
     attrs.append(i) 
 
-  dataset.plot(x=x_variable, y=attrs[0], ax=axs[0,0])
-  dataset.plot(x=x_variable, y=attrs[1], ax=axs[0,1])
-  dataset.plot(x=x_variable, y=attrs[2], ax=axs[1,0])
-  dataset.plot(x=x_variable, y=attrs[3], ax=axs[1,1])
-  dataset.plot(x=x_variable, y=attrs[4], ax=axs[2,0])
-  dataset.plot(x=x_variable, y=attrs[5], ax=axs[2,1])
+  # plots for first location (point data)
+  # variables: wind, precip, min/max temp, avg temp
+  dataset.plot(x=station_dataframe[0]['Date'], y=list_of_attributes[0], ax=axs[0,0])
+  dataset.plot(x=station_dataframe[0]['Date'], y=list_of_attributes[1], ax=axs[0,1])
+  dataset.plot(x=station_dataframe[0]['Date'], y=list_of_attributes[2], ax=axs[0,2])
+  dataset.plot(x=station_dataframe[0]['Date'], y=list_of_attributes[3], ax=axs[0,2])
+  dataset.plot(x=station_dataframe[0]['Date'], y=list_of_attributes[4], ax=axs[0,3])
 
+  # plots for second location (point data)
+  # variables: wind, precip, min/max temp, avg temp
+  dataset.plot(x=station_dataframe[1]['Date'], y=list_of_attributes[0], ax=axs[1,0])
+  dataset.plot(x=station_dataframe[1]['Date'], y=list_of_attributes[1], ax=axs[1,1])
+  dataset.plot(x=station_dataframe[1]['Date'], y=list_of_attributes[2], ax=axs[1,2])
+  dataset.plot(x=station_dataframe[1]['Date'], y=list_of_attributes[3], ax=axs[1,2])
+  dataset.plot(x=station_dataframe[1]['Date'], y=list_of_attributes[4], ax=axs[1,3])
+
+  # plots for third location (point data)
+  # variables: wind, precip, min/max temp, avg temp
+  dataset.plot(x=station_dataframe[2]['Date'], y=list_of_attributes[0], ax=axs[2,0])
+  dataset.plot(x=station_dataframe[2]['Date'], y=list_of_attributes[1], ax=axs[2,1])
+  dataset.plot(x=station_dataframe[2]['Date'], y=list_of_attributes[2], ax=axs[2,2])
+  dataset.plot(x=station_dataframe[2]['Date'], y=list_of_attributes[3], ax=axs[2,2])
+  dataset.plot(x=station_dataframe[2]['Date'], y=list_of_attributes[4], ax=axs[2,3])
+
+  # plots for fourth location (point data)
+  # variables: wind, precip, min/max temp, avg temp
+  dataset.plot(x=station_dataframe[3]['Date'], y=list_of_attributes[0], ax=axs[3,0])
+  dataset.plot(x=station_dataframe[3]['Date'], y=list_of_attributes[1], ax=axs[3,1])
+  dataset.plot(x=station_dataframe[3]['Date'], y=list_of_attributes[2], ax=axs[3,2])
+  dataset.plot(x=station_dataframe[3]['Date'], y=list_of_attributes[3], ax=axs[3,2])
+  dataset.plot(x=station_dataframe[3]['Date'], y=list_of_attributes[4], ax=axs[3,3])
+
+  # plots for fifth location (point data)
+  # variables: wind, precip, min/max temp, avg temp
+  dataset.plot(x=station_dataframe[4]['Date'], y=list_of_attributes[0], ax=axs[4,0])
+  dataset.plot(x=station_dataframe[4]['Date'], y=list_of_attributes[1], ax=axs[4,1])
+  dataset.plot(x=station_dataframe[4]['Date'], y=list_of_attributes[2], ax=axs[4,2])
+  dataset.plot(x=station_dataframe[4]['Date'], y=list_of_attributes[3], ax=axs[4,2])
+  dataset.plot(x=station_dataframe[4]['Date'], y=list_of_attributes[4], ax=axs[4,3])
+
+  # display plots
   return plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
