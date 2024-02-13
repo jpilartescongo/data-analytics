@@ -49,7 +49,7 @@ def conus_precip_plot(date_range, variable_name, label):
     precip_day = variable_name[day]
     plt.figure(figsize=(15, 6))
     ax = plt.axes(projection=ccrs.PlateCarree())
-    plt.contourf(conus_precip_lon, conus_precip_lat, precip_day, transform=ccrs.PlateCarree(), cmap='viridis', vmin=0, vmax=180)
+    plt.contourf(variable_name['lon'][:], variable_name['lat'][:], precip_day, transform=ccrs.PlateCarree(), cmap='viridis', vmin=0, vmax=180)
     ax.coastlines()
     
     # add gridlines and colorbar 
@@ -62,5 +62,6 @@ def conus_precip_plot(date_range, variable_name, label):
     plt.savefig(filename)
     plt.close()
     images.append(filename)
-
+    
+    # return images
     return images
