@@ -53,6 +53,7 @@ def indiv_station(dataset, city_name):
 # --------------------------------------------------------------------------
 # function to create hexbin
 def create_hexbin(x_var, y_var, bar_label, x_label, y_label):
+  fig, ax = plt.subplots()
   hexbin = ax.hexbin(x, y, gridsize=20, cmap='Blues')
   cbar = plt.colorbar(hexbin, label=bar_label)
   plt.xlabel(x_label)
