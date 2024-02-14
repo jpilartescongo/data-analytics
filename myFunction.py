@@ -44,44 +44,6 @@ def general_reference_map(coords):
 
 
 # --------------------------------------------------------------------------
-# function to create animated gif of precipitation across conus
-def conus_precip_plot(time_variable):
-  images = []
-
-  # iterate over each unique value of 'time'
-  for time, group_df in time_variable:
-      # extract lat, lon, precip variables to hold values
-      lon, lat, precip = group_df['lon'], group_df['lon'], group_df['lat'], group_df['precip']
-
-      # Create a figure and axis with Plate Carrée projection
-      plt.figure(figsize=(10, 6))
-      ax = plt.axes(projection=ccrs.PlateCarree())
-
-      # Plot the precipitation data using scatter plot
-      scatter = ax.scatter(lon, lat, c=precip, cmap='Blues', vmin=0, vmax=200)
-
-      # Add coastlines and gridlines
-      ax.coastlines()
-      ax.gridlines(draw_labels=True)
-
-      # Create a ScalarMappable object for the colorbar
-      sm = plt.cm.ScalarMappable(cmap='Blues', norm=mcolors.Normalize(vmin=0, vmax=200))
-      sm.set_array([])
-
-      # Add colorbar
-      plt.colorbar(sm, label='Precipitation (mm)')
-
-      # save the figure
-      plt.title(f'Precipitation in CONUS - {time.strftime("%Y-%m-%d")}')
-
-      filename = f'precipitation_{time.strftime("%Y-%m-%d")}.png'
-      plt.savefig(filename)
-      plt.close()
-      images.append(filename)
-
-
-
-# --------------------------------------------------------------------------
 # function to create subplots in a 3x2 grid
 def point_data_subplots(dataset, x_variable, list_of_variables, plot_title):
   list = list_of_variables
