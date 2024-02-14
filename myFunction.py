@@ -70,6 +70,10 @@ def plot_subplot(ax, lon, lat, data, cmap, title):
     ax.set_title(title)
     return im
 
-def create_colorbar(im, axes):
+def plot_pts(ax, station_data):
+    ax.scatter(station_data['LONGITUDE'], station_data['LATITUDE'], color='black', marker='*', s=20, label='Station')
+    ax.legend()
+
+def create_cbar(im, axes):
     cbar = plt.colorbar(im, ax=axes, orientation='vertical', fraction=0.03, pad=0.09)
     cbar.set_label('Temperature (ºC)')
