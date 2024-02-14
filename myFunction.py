@@ -48,4 +48,12 @@ def general_reference_map(coords):
 def indiv_station(dataset, city_name):
   feature = dataset[dataset['NAME'].str.startswith(city_name)]
   return feature
-  
+
+
+# --------------------------------------------------------------------------
+# function to create hexbin
+def create_hexbin(dataset, x_var, y_var, bar_label, x_label, y_label):
+  hexbin = ax.hexbin(x, y, gridsize=20, cmap='Blues')
+  cbar = plt.colorbar(hexbin, label=bar_label)
+  plt.xlabel(x_label)
+  plt.ylabel(y_label)
