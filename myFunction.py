@@ -1,7 +1,7 @@
 # Import auxiliary functions
 import numpy as np
 import pandas as pd
-import requests
+import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
@@ -45,31 +45,31 @@ def general_reference_map(coords):
 
 # --------------------------------------------------------------------------
 # function to create animated gif of precipitation across conus
-def conus_precip_plot(date_range, variable_name, label):
+def conus_precip_plot(time_var, variable_name, label):
   images = []
-  for day in date_range:
-    # create temporary image file for each day
-    precip_day = variable_name[day]
-    colorbar_label = 'Precipitation (mm)'
-    plt.figure(figsize=(15, 6))
+
+  for time, group_df in time_var:
+    # create lat, lon, precip variables to hold values
+    lon, lat, precip = group_df['lon'], group_df['lon'], group_df['lat'], group_df['precip']
+
+    # plot figure using determined size, reference system, and add coastlines/boundaries + gridlines
+    plt.figure(figsize=(10,6))
     ax = plt.axes(projection=ccrs.PlateCarree())
-    plt.contourf(variable_name['lon'][:], variable_name['lat'][:], precip_day, transform=ccrs.PlateCarree(), cmap='viridis', vmin=0, vmax=180)
+    scatter = ax.scatter(lon, lat, c=precip, cmap='viridis', vmin=0, vmax=200)
     ax.coastlines()
-    
-    # add gridlines and colorbar 
     ax.gridlines(draw_labels=True)
-    plt.colorbar(label=colorbar_label)
-    plt.title(f'Daily Precipitation - Day {day + 1}')
+    sm = plt.cm.ScalarMappable(cmap='viridis', norm=mcolors.Normalize(vmin=0, vmax=200))
+    sm.set_array([])
+    plt.colorbar(sm, label='Precipitation (mm)')
 
     # save resulting file
-    filename = f'precipitation_day_{day + 1}.png'
+    filename = f'precipitation_day_{time + 1}.png'
     plt.savefig(filename)
     plt.close()
     images.append(filename)
     
     # return images
   return images
-
 
 # --------------------------------------------------------------------------
 # function to create subplots in a 3x2 grid
@@ -94,20 +94,3 @@ def point_data_subplots(dataset, x_variable, list_of_variables, plot_title):
 
   # display plots
   return plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
