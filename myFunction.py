@@ -44,25 +44,8 @@ def general_reference_map(coords):
 
 
 # --------------------------------------------------------------------------
-# function to create subplots in a 3x2 grid
-def point_data_subplots(dataset, x_variable, list_of_variables, plot_title):
-  list = list_of_variables
-  fig, axs = plt.subplots(3, 2, figsize=(5,5))
-  fig.suptitle(plot_title)
-
-  # loop through a list of variables to be ploted
-  attrs = []
-  for i in list: 
-    attrs.append(i) 
-
-  # plots for first location (point data)
-  # variables: wind, precip, min/max temp, avg temp
-  dataset.plot(x=x_variable, y=attrs[0], ax=axs[0,0])
-  dataset.plot(x=x_variable, y=attrs[1], ax=axs[0,1])
-  dataset.plot(x=x_variable, y=attrs[2], ax=axs[1,0])
-  dataset.plot(x=x_variable, y=attrs[3], ax=axs[1,1])
-  dataset.plot(x=x_variable, y=attrs[4], ax=axs[2,0])
-  dataset.plot(x=x_variable, y=attrs[5], ax=axs[2,1])
-
-  # display plots
-  return plt.show()
+# function to group features according to location
+def indiv_station(dataset, city_name):
+  feature = dataset[dataset['NAME'].str.startswith(city_name)]
+  return feature
+  
