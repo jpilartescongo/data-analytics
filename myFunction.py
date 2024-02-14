@@ -58,3 +58,18 @@ def create_hexbin(x_var, y_var, bar_label, x_label, y_label):
   cbar = plt.colorbar(hexbin, label=bar_label)
   plt.xlabel(x_label)
   plt.ylabel(y_label)
+
+
+# --------------------------------------------------------------------------
+# function to create temperature maps
+def plot_subplot(ax, lon, lat, data, cmap, title):
+    im = ax.pcolormesh(lon, lat, data, cmap=cmap, transform=ccrs.PlateCarree())
+    ax.coastlines()
+    ax.gridlines(draw_labels=True)
+    ax.set_extent([-100, -93, 25, 33])
+    ax.set_title(title)
+    return im
+
+def create_colorbar(im, axes):
+    cbar = plt.colorbar(im, ax=axes, orientation='vertical', fraction=0.03, pad=0.09)
+    cbar.set_label('Temperature (ºC)')
