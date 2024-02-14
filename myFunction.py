@@ -7,6 +7,7 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import imageio
 import matplotlib.colors as mcolors
+import seaborn as sns
 
 # ------------------------------------------
 # clear output of colab cells
