@@ -78,7 +78,7 @@ def plot_pts(ax, station_data):
 def create_cbar(im, axes, bar_min, bar_max):
     cbar = plt.colorbar(im, ax=axes, orientation='vertical', fraction=0.03, pad=0.09)
     cbar.set_label('Temperature (ºC)')
-    cbar.set_clim(vmin=bar_min, vmax=bar_max)
+    cbar.set_lim(vmin=bar_min, vmax=bar_max)
 
 def generate_density_plot(data, ax, x_label, title):
   sns.distplot(data, ax=ax)
