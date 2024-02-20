@@ -86,7 +86,7 @@ def generate_density_plot(data, ax, x_label, title):
 
 
 # function to create and display histogram
-def create_hist2(dataset_arr, limit_arr, mean_label_position, plot_color, title, histx_label_arr, histy_label_arr, var_array, var2, unit_array):
+def create_hist2(dataset_arr, limit_arr, mean_label_position, plot_color, title, histx_label_arr, histy_label_arr, var_array, unit_array):
     fig, axs = plt.subplots(1,2, figsize=(13,4))
     xlim, ylim = (limit_arr[0], limit_arr[1]), (limit_arr[2], limit_arr[3])
     label_x, label_y = mean_label_position[0], mean_label_position[1]
@@ -100,7 +100,7 @@ def create_hist2(dataset_arr, limit_arr, mean_label_position, plot_color, title,
     axs[0].axvline(mean1, color='black', linestyle='dashed', linewidth=1)
     axs[0].set_xlim(hist_x_lim)
     axs[0].set_ylim(hist_y_lim)
-    #axs[0].text(mean_label_x, mean_label_y, f'{var_array[0]} (Mean): {mean2:.2f} {unit_array[0]}'.format(var_array[0], unit_array[0]), ha='center')  
+    axs[0].text(mean_label_x, mean_label_y, f'{var_array[0]} (Mean): {mean2:.2f} {unit_array[0]}'.format(var_array[0], unit_array[0]), ha='center')  
         
     mean2 = dataset_arr[1].mean()
     dataset_arr[1].plot(kind='hist', bins=20, ax=axs[0], color=plot_color, edgecolor='black', linewidth=0.5)
@@ -111,6 +111,6 @@ def create_hist2(dataset_arr, limit_arr, mean_label_position, plot_color, title,
     axs[1].axvline(mean2, color='black', linestyle='dashed', linewidth=1)
     axs[1].set_xlim(hist_x_lim)
     axs[1].set_ylim(hist_y_lim)
-    #axs[1].text(mean_label_x, mean_label_y, f'{var_array[1]} (Mean): {mean2:.2f} {unit_array[1]}'.format(var_array[1], unit_array[1]), ha='center')
+    axs[1].text(mean_label_x, mean_label_y, f'{var_array[1]} (Mean): {mean2:.2f} {unit_array[1]}'.format(var_array[1], unit_array[1]), ha='center')
     
     return fig
