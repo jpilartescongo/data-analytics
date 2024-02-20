@@ -86,7 +86,7 @@ def generate_density_plot(data, ax, x_label, title):
 
 
 # function to create and display histogram
-def create_hist2(dataset_arr, limit_arr, mean_label_position, plot_color, title, histx_label_arr, histy_label_arr, var_array, var2, unit_array[1]):
+def create_hist2(dataset_arr, limit_arr, mean_label_position, plot_color, title, histx_label_arr, histy_label_arr, var_array, var2, unit_array):
     fig, axs = plt.subplots(1,2, figsize=(13,4))
     xlim, ylim = (limit_arr[0], limit_arr[1]), (limit_arr[2], limit_arr[3])
     label_x, label_y = mean_label_position[0], mean_label_position[1]
