@@ -100,7 +100,7 @@ def create_hist2(dataset_arr, limit_arr, mean_label_position, plot_color, title,
     axs[0].axvline(mean1, color='black', linestyle='dashed', linewidth=1)
     axs[0].set_xlim(hist_x_lim)
     axs[0].set_ylim(hist_y_lim)
-    axs[0].text(mean_label_x, mean_label_y, f'{var_array[0]} (Mean): {mean2:.2f} {unit_array[0]}'.format(var_array[0], unit_array[0])), ha='center')  
+    axs[0].text(mean_label_x, mean_label_y, f'{var_array[0]} (Mean): {mean2:.2f} {unit_array[0]}'.format(var_array[0], unit_array[0]), ha='center')  
         
     mean2 = dataset_arr[1].mean()
     dataset_arr[1].plot(kind='hist', bins=20, ax=axs[0], color=plot_color, edgecolor='black', linewidth=0.5)
