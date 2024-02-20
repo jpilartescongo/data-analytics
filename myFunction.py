@@ -83,3 +83,36 @@ def generate_density_plot(data, ax, x_label, title):
   sns.distplot(data, ax=ax)
   ax.set_xlabel(x_label)
   ax.set_title(title)
+
+
+# function to create and display histogram
+def create_hist2(dataset, limit_arr, label_arr, mean_label_position, plot_color, title, histx_label, histy_label, var, var-unit):
+    fig, axs = plt.subplots(1,2, figsize=(13,4))
+    xlim, ylim = (limit_arr[0], limit_arr[1]), (limit_arr[2], limit_arr[3])
+    label_x, label_y = mean_label_position[0], mean_label_position[1]
+
+    mean1 = dataset.mean()
+    dataset.plot(kind='hist', bins=20, ax=axs[0], color=plot_color, edgecolor='black', linewidth=0.5)
+    axs[0].set_title(title)
+    axs[0].spines[['top', 'right']].set_visible(True)
+    axs[0].set_xlabel(histx_label)
+    axs[0].set_ylabel(histy_label)
+    axs[0].axvline(mean1, color='black', linestyle='dashed', linewidth=1)
+    axs[0].set_xlim(hist_x_lim)
+    axs[0].set_ylim(hist_y_lim)
+    # add mean value as text
+    axs[0].text(mean_label_x, mean_label_y, f'Max Temp (Mean): {mean1:.2f} ºC', ha='center')
+        
+    mean1 = dataset.mean()
+    dataset.plot(kind='hist', bins=20, ax=axs[0], color=plot_color, edgecolor='black', linewidth=0.5)
+    axs[0].set_title(title)
+    axs[0].spines[['top', 'right']].set_visible(True)
+    axs[0].set_xlabel(histx_label)
+    axs[0].set_ylabel(histy_label)
+    axs[0].axvline(mean1, color='black', linestyle='dashed', linewidth=1)
+    axs[0].set_xlim(hist_x_lim)
+    axs[0].set_ylim(hist_y_lim)
+    # add mean value as text
+    axs[0].text(mean_label_x, mean_label_y, f'{variable} (Mean): {mean1:.2f} {unit}'.format(variable, var_unit), ha='center')
+    
+    return fig
