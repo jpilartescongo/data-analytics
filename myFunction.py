@@ -111,6 +111,6 @@ def create_hist2(dataset_arr, limit_arr, mean_label_position, plot_color, title,
     axs[1].axvline(mean2, color='black', linestyle='dashed', linewidth=1)
     axs[1].set_xlim(hist_x_lim)
     axs[1].set_ylim(hist_y_lim)
-    axs[1].text(mean_label_x, mean_label_y, f'{var_array[1]} (Mean): {mean2:.2f} {unit_array[1]}'.format(var_array[1], unit_array[1])), ha='center')
+    axs[1].text(mean_label_x, mean_label_y, f'{var_array[1]} (Mean): {mean2:.2f} {unit_array[1]}'.format(var_array[1], unit_array[1]), ha='center')
     
     return fig
