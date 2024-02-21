@@ -1,5 +1,5 @@
 # install required modules
-!pip install cartopy
+#!pip install cartopy
 # import auxiliary libraries
 import numpy as np
 import pandas as pd
@@ -23,8 +23,8 @@ def import_libraries():
     import numpy as np
     #import xarray as xr
     import matplotlib.pyplot as plt
-    import cartopy.crs as ccrs
-    import cartopy.feature as cfeature
+    #import cartopy.crs as ccrs
+    #import cartopy.feature as cfeature
     from os.path import join
     from IPython.display import clear_output
     import datetime as dt
