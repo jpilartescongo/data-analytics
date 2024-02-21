@@ -1,5 +1,4 @@
 # install required modules
-!pip install cartopy
 # import auxiliary libraries
 import numpy as np
 import pandas as pd
@@ -14,6 +13,7 @@ import seaborn as sns
 # ------------------------------------------
 # function to plot general reference map of focus areas
 def general_reference_map(coords):
+  
   # set WGS84 as coordinate system
   coords_crs = 'EPSG:4326'
   projection = ccrs.LambertConformal()
