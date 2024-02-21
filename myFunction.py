@@ -1,4 +1,6 @@
-# Import auxiliary functions
+# install required modules
+!pip install cartopy
+# import auxiliary libraries
 import numpy as np
 import pandas as pd
 import requests
