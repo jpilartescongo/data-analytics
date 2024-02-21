@@ -42,11 +42,6 @@ def import_libraries():
     from matplotlib import dates
     import matplotlib.colors as mcolors
     import seaborn as sns
-
-    print("All packages imported successfully.")
-  except Exception as e:
-    print("Error occurred while importing packages:", str(e))
-
 # ------------------------------------------
 # function to plot general reference map of focus areas
 def general_reference_map(coords):
