@@ -73,10 +73,10 @@ def create_cbar(im, axes):
     cbar = plt.colorbar(im, ax=axes, orientation='vertical', fraction=0.03, pad=0.09)
     cbar.set_label('Temperature (ºC)')
 
-def generate_density_plot(data, ax, x_label, title):
-  sns.distplot(data, ax=ax)
-  ax.set_xlabel(x_label)
-  ax.set_title(title)
+# def generate_density_plot(data, ax, x_label, title):
+#   sns.distplot(data, ax=ax)
+#   ax.set_xlabel(x_label)
+#   ax.set_title(title)
 
 
 # function to create and display histogram
