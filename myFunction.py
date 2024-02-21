@@ -17,35 +17,35 @@ clear_output()
 # ------------------------------------------
 # import required libraries
 def import_libraries():
-      """
-      Import all the required packages/modules.
-      """
-      try:
-            # Install supporting libraries/modules
-            !pip install cartopy
-            #!pip install netCDF4 xarray
-            
-            # Importing required packages
-            import numpy as np
-            #import xarray as xr
-            import matplotlib.pyplot as plt
-            import cartopy.crs as ccrs
-            import cartopy.feature as cfeature
-            from os.path import join
-            from IPython.display import clear_output
-            import datetime as dt
-            import pandas as pd
-            import os
-            import sys
-            from IPython.display import Image
-            import imageio.v2 as imageio
-            from matplotlib import dates
-            import matplotlib.colors as mcolors
-            import seaborn as sns
-      
-            print("All packages imported successfully.")
-      except Exception as e:
-            print("Error occurred while importing packages:", str(e))
+    """
+  Import all the required packages/modules.
+  """
+  try:
+    # Install supporting libraries/modules
+    !pip install cartopy
+    #!pip install netCDF4 xarray
+
+    # Importing required packages
+    import numpy as np
+    #import xarray as xr
+    import matplotlib.pyplot as plt
+    import cartopy.crs as ccrs
+    import cartopy.feature as cfeature
+    from os.path import join
+    from IPython.display import clear_output
+    import datetime as dt
+    import pandas as pd
+    import os
+    import sys
+    from IPython.display import Image
+    import imageio.v2 as imageio
+    from matplotlib import dates
+    import matplotlib.colors as mcolors
+    import seaborn as sns
+
+    print("All packages imported successfully.")
+  except Exception as e:
+    print("Error occurred while importing packages:", str(e))
 
 # ------------------------------------------
 # function to plot general reference map of focus areas
