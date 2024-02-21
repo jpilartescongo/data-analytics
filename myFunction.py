@@ -48,7 +48,7 @@ def indiv_station(dataset, city_name):
 
 # --------------------------------------------------------------------------
 # function to create hexbin
-def create_hexbin(x_var, y_var, bar_label, x_label, y_label):
+def create_hexbin(x, y, bar_label, x_label, y_label):
   fig, ax = plt.subplots()
   hexbin = ax.hexbin(x, y, gridsize=20, cmap='Blues')
   cbar = plt.colorbar(hexbin, label=bar_label)
@@ -73,10 +73,10 @@ def create_cbar(im, axes):
     cbar = plt.colorbar(im, ax=axes, orientation='vertical', fraction=0.03, pad=0.09)
     cbar.set_label('Temperature (ºC)')
 
-# def generate_density_plot(data, ax, x_label, title):
-#   sns.distplot(data, ax=ax)
-#   ax.set_xlabel(x_label)
-#   ax.set_title(title)
+def generate_density_plot(data, ax, x_label, title):
+  sns.distplot(data, ax=ax)
+  ax.set_xlabel(x_label)
+  ax.set_title(title)
 
 
 # function to create and display histogram
