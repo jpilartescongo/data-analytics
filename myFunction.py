@@ -21,10 +21,6 @@ def import_libraries():
   Import all the required packages/modules.
   """
   try:
-    # Install supporting libraries/modules
-    !pip install cartopy
-    #!pip install netCDF4 xarray
-
     # Importing required packages
     import numpy as np
     #import xarray as xr
