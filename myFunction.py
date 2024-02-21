@@ -17,10 +17,6 @@ clear_output()
 # ------------------------------------------
 # import required libraries
 def import_libraries():
-    """
-  Import all the required packages/modules.
-  """
-  try:
     # Importing required packages
     import numpy as np
     #import xarray as xr
