@@ -77,3 +77,22 @@ def generate_density_plot(data, ax, x_label, title):
   sns.distplot(data, ax=ax)
   ax.set_xlabel(x_label)
   ax.set_title(title)
+
+
+# --------------------------------------------------------------------------
+# function to check if dataset is normally distributed 
+
+# uses a given dataset in pandas pf format
+# uses string that represents attribute of interest
+def check_distribution(dataset, attr):
+  stat, p = stats.kstest(dataset[attr], 'norm', (dataset[attr].mean(), dataset[attr].std()))
+
+  # print the results
+  print('K-S test statistic:', stat)
+  print('p-value:', p)
+
+  # interpret the results
+  if p > 0.05:
+    print('The data is normally distributed.')
+  else:
+    print('The data is not normally distributed.')
