@@ -9,6 +9,7 @@ import cartopy.feature as cfeature
 import imageio
 import matplotlib.colors as mcolors
 import seaborn as sns
+import scipy.stats as stats
 
 # ------------------------------------------
 # function to plot general reference map of focus areas
