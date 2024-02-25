@@ -101,7 +101,8 @@ def check_distribution(dataset, attr):
 
 # --------------------------------------------------------------------------
 # plot fire histograms for portugal data
-def create_fire_histograms(dataset, var1, var2, title1, title2):
+
+def create_fire_hist2(dataset, var1, var2, title1, title2):
   fig, axs = plt.subplots(1, 2, figsize=(12, 5))
   hist_x_lim = (-100, 7050)
   hist_y_lim = (0, 12)
@@ -134,3 +135,37 @@ def create_fire_histograms(dataset, var1, var2, title1, title2):
 
   plt.tight_layout()
   plt.show()
+
+# --------------------------------------------------------------------------
+# function to plot bar charts for two cities / sets of data
+def create_bar_charts2(dataset1, dataset2, title1, title2, xlabel, ylabel):
+  # Plot for Coimbra
+  fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+
+  # Plot bars
+  axs[0].bar(dataset1['YEAR'], dataset1['LOSS_HA'], color='orchid', edgecolor='black', linewidth=0.5, label='General Loss')
+  axs[0].bar(dataset1['YEAR'], dataset1['LOSS_FIRES_HA'], color='coral', edgecolor='black', linewidth=0.5, label='Loss Due to Fire')
+  axs[0].set_title(title1)
+  axs[0].set_xlabel(xlabel)
+  axs[0].set_ylabel(ylabel)
+  axs[0].legend(loc='upper left')  # Add legend to the top left
+
+  # Add line plot for trend
+  axs[0].plot(dataset1['YEAR'], dataset1['LOSS_HA'].rolling(window=3).mean(), color='black', linestyle='--', label='Moving Average (3Yr)')
+  axs[0].legend(loc='upper left')
+
+  # Plot for Porto
+  axs[1].bar(dataset2['YEAR'], dataset2['LOSS_HA'], color='orchid', edgecolor='black', linewidth=0.5, label='General Loss')
+  axs[1].bar(dataset2['YEAR'], dataset2['LOSS_FIRES_HA'], color='coral', edgecolor='black', linewidth=0.5, label='Loss Due to Fire')
+  axs[1].set_title(title2)
+  axs[1].set_xlabel(xlabel)
+  axs[1].set_ylabel(ylabel)
+  axs[1].legend(loc='upper left')  # Add legend to the top left
+
+  # Add line plot for trend
+  axs[1].plot(dataset2['YEAR'], dataset2['LOSS_HA'].rolling(window=3).mean(), color='black', linestyle='--', label='Moving Average (3Yr)')
+  axs[1].legend(loc='upper left')
+
+  plt.tight_layout()
+  plt.show()
+
