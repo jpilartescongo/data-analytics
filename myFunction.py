@@ -98,7 +98,6 @@ def check_distribution(dataset, attr):
   else:
     print('The data is not normally distributed.')
 
-
 # --------------------------------------------------------------------------
 # plot fire histograms for portugal data
 
@@ -221,5 +220,62 @@ def create_port_plots4(coimbra_data, porto_data, merged_data):
   axes[1, 1].legend(loc=legend_loc)
 
   # adjust layout before display
+  plt.tight_layout()
+  plt.show()
+  
+# --------------------------------------------------------------------------
+# 1x2 plot comparing temperature and precipitation in coimbra and porto
+def create_weather_comparison(coimbra_merged, porto_merged):
+  # extract data from coimbra_merged and porto
+  yrs_coimbra = coimbra_merged['YEAR'].to_numpy()
+  precip_coimbra = coimbra_merged['PRCP'].to_numpy()
+  temp_coimbra = coimbra_merged['TAVG'].to_numpy()
+  precip_error_coimbra = coimbra_merged['PRCP'].std()
+  temp_error_coimbra = coimbra_merged['TAVG'].std()
+
+  yrs_porto = porto_merged['YEAR'].to_numpy()
+  precip_porto = porto_merged['PRCP'].to_numpy()
+  temp_porto = porto_merged['TAVG'].to_numpy()
+  precip_error_porto = porto_merged['PRCP'].std()
+  temp_error_porto = porto_merged['TAVG'].std()
+
+  # ----------------------------------------------------------------
+  # create the precipitation bar chart for coimbra and porto
+  plt.subplot(1, 2, 1)
+  plt.bar(yrs_coimbra, temp_coimbra, color='darkorchid',
+          yerr=temp_error_coimbra, align='center', ecolor='black',
+          capsize=10, label='Coimbra', width= 0.25)
+
+  plt.bar(yrs_porto +  0.25, temp_porto, color='coral',
+          yerr=temp_error_porto, align='center', ecolor='black',
+          capsize=10, label='Porto', width= 0.25)
+
+  # set labels, title, y-axis limit, legend, and figure size
+  plt.xlabel('Year')
+  plt.ylabel('Temperature (ºC)')
+  plt.title('Average Annual Temperature')
+  plt.ylim(0, 20)
+  plt.legend(loc='upper right')
+  plt.gcf().set_size_inches(14, 5)
+
+  # ----------------------------------------------------------------
+  # create temperature bar chart for coimbra and porto
+  plt.subplot(1, 2, 2)
+  plt.bar(yrs_coimbra, precip_coimbra, color='darkorchid', 
+          yerr=precip_error_coimbra, align='center', ecolor='black',
+          capsize=10, label='Coimbra', width= 0.25)
+
+  plt.bar(yrs_porto +  0.25, precip_porto, color='coral',
+          yerr=precip_error_porto, align='center', ecolor='black',
+          capsize=10, label='Porto', width= 0.25)
+
+  # set labels, title, legend, and figure size
+  plt.xlabel('Year')
+  plt.ylabel('Precipitation (mm)')
+  plt.title('Total Annual Precipitation')
+  plt.legend(loc='upper right')
+  plt.gcf().set_size_inches(14, 5)
+
+  # adjust layout for display purposes then show the plot
   plt.tight_layout()
   plt.show()
