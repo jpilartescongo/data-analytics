@@ -208,7 +208,7 @@ def create_port_plots4(coimbra_data, porto_data, merged_data):
   sns.lineplot(x=x_attr, y=y_attr[3], data=porto_data, label=city2, color=colors[1], ax=axes[1, 0], linestyle='--')
   axes[1, 0].set_title(title3)
   axes[1, 0].set_xlabel(xlabel)
-  axes[1, 0].set_ylabel(y_labels[0])
+  axes[1, 0].set_ylabel(y_labels[2])
   axes[1, 0].legend(loc=legend_loc)
 
   # fourth plot
@@ -216,7 +216,7 @@ def create_port_plots4(coimbra_data, porto_data, merged_data):
   sns.lineplot(x=x_attr, y=y_attr[3], data=merged_data, label='Loss Due to Fire', color=colors[1], ax=axes[1, 1], linestyle='--')
   axes[1, 1].set_title(title4)
   axes[1, 1].set_xlabel(xlabel)
-  axes[1, 1].set_ylabel(y_labels[0])
+  axes[1, 1].set_ylabel(y_labels[2])
   axes[1, 1].legend(loc=legend_loc)
 
   # adjust layout before display
