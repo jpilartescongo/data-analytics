@@ -97,3 +97,40 @@ def check_distribution(dataset, attr):
     print('The data is normally distributed.')
   else:
     print('The data is not normally distributed.')
+
+
+# --------------------------------------------------------------------------
+# plot fire histograms for portugal data
+def create_fire_histograms(dataset, var1, var2, title1, title2):
+  fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+  hist_x_lim = (-100, 7050)
+  hist_y_lim = (0, 12)
+  mean_label_x = 4000
+  mean_label_y = 10
+
+  mean_value1 = dataset[var1].mean()
+  dataset[var1].plot(kind='hist', bins=20, ax=axs[0], color='orangered', edgecolor='black', linewidth=0.5)
+  axs[0].set_title(title1)
+  axs[0].spines[['top', 'right']].set_visible(True)
+  axs[0].set_xlabel('Tree Cover Loss (ha)')
+  axs[0].set_ylabel('Frequency')
+  axs[0].axvline(mean_value1, color='black', linestyle='dashed', linewidth=2, label='Mean')
+  axs[0].set_xlim(hist_x_lim)
+  axs[0].set_ylim(hist_y_lim)
+  # add mean value as text
+  axs[0].text(mean_label_x, mean_label_y, f'Mean Loss: {mean_value1:.2f} ha', ha='center')
+
+  mean_value2 = dataset[var2].mean()
+  dataset[var2].plot(kind='hist', bins=20, ax=axs[1], color='darkorchid', edgecolor='black', linewidth=0.5)
+  axs[1].set_title(title2)
+  axs[1].spines[['top', 'right']].set_visible(True)
+  axs[1].set_xlabel('Tree Cover Loss (ha)')
+  axs[1].set_ylabel('Frequency')
+  axs[1].axvline(mean_value2, color='black', linestyle='dashed', linewidth=2, label='Mean')
+  axs[1].set_xlim(hist_x_lim)
+  axs[1].set_ylim(hist_y_lim)
+  # add mean value as text
+  axs[1].text(mean_label_x, mean_label_y, f'Mean Loss: {mean_value2:.2f} ha', ha='center')
+
+  plt.tight_layout()
+  plt.show()
