@@ -169,3 +169,57 @@ def create_bar_charts2(dataset1, dataset2, title1, title2, xlabel, ylabel):
   plt.tight_layout()
   plt.show()
 
+# --------------------------------------------------------------------------
+# 2x2 plot of coimbra/porto trend analyses using line graphs
+def plot_subplots(coimbra_data, porto_data, merged_data):
+  # create figure with 2x2 figure settings and define label and titles for each subplot
+  fig, axes = plt.subplots(2, 2, figsize=(12, 7))
+  title1 = 'Average Annual Temperature'
+  title2 = 'Total Annual Precipitation'
+  title3 = 'Tree Cover Loss Due to Fire'
+  title4 = 'Tree Cover Loss (General and Due To Fire)'
+  xlabel, y_labels = 'Year', ['Temperature (ºC)', 'Precipitation (mm)', 'Tree Cover Loss (ha)']
+  legend_loc = 'upper right'
+
+  # set variable names and other attributes for better optimization
+  y_attr = ['TAVG', 'PRCP', 'LOSS_HA', 'LOSS_FIRES_HA']
+  x_attr = 'YEAR'
+
+  city1, city2 = 'Coimbra', 'Porto'
+  colors = ['darkorchid', 'orangered']
+
+  # first plot
+  sns.lineplot(x=x_attr, y=y_attr[0], data=coimbra_data, label=city1, color=colors[0], ax=axes[0, 0])
+  sns.lineplot(x=x_attr, y=y_attr[0], data=porto_data, label=city2, color=colors[1], ax=axes[0, 0], linestyle='--')
+  axes[0, 0].set_title(title1)
+  axes[0, 0].set_xlabel(xlabel)
+  axes[0, 0].set_ylabel(y_labels[0])
+  axes[0, 0].legend(loc=legend_loc)
+
+  # second plot
+  sns.lineplot(x=x_attr, y=y_attr[1], data=coimbra_data, label=city1, color=colors[0], ax=axes[0, 1])
+  sns.lineplot(x=x_attr, y=y_attr[1], data=porto_data, label=city2, color=colors[1], ax=axes[0, 1], linestyle='--')
+  axes[0, 1].set_title(title2)
+  axes[0, 1].set_xlabel(xlabel)
+  axes[0, 1].set_ylabel(y_labels[1])
+  axes[0, 1].legend(loc=legend_loc)
+
+  # third plot
+  sns.lineplot(x=x_attr, y=y_attr[3], data=coimbra_data, label=city1, color=colors[0], ax=axes[1, 0])
+  sns.lineplot(x=x_attr, y=y_attr[3], data=porto_data, label=city2, color=colors[1], ax=axes[1, 0], linestyle='--')
+  axes[1, 0].set_title(title3)
+  axes[1, 0].set_xlabel(xlabel)
+  axes[1, 0].set_ylabel(y_labels[0])
+  axes[1, 0].legend(loc=legend_loc)
+
+  # fourth plot
+  sns.lineplot(x=x_attr, y=y_attr[2], data=merged_data, label='General Loss', color=colors[0], ax=axes[1, 1])
+  sns.lineplot(x=x_attr, y=y_attr[3], data=merged_data, label='Loss Due to Fire', color=colors[1], ax=axes[1, 1], linestyle='--')
+  axes[1, 1].set_title(title4)
+  axes[1, 1].set_xlabel(xlabel)
+  axes[1, 1].set_ylabel(y_labels[0])
+  axes[1, 1].legend(loc=legend_loc)
+
+  # adjust layout before display
+  plt.tight_layout()
+  plt.show()
