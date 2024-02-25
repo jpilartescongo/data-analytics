@@ -171,7 +171,7 @@ def create_bar_charts2(dataset1, dataset2, title1, title2, xlabel, ylabel):
 
 # --------------------------------------------------------------------------
 # 2x2 plot of coimbra/porto trend analyses using line graphs
-def plot_subplots(coimbra_data, porto_data, merged_data):
+def create_port_plots4(coimbra_data, porto_data, merged_data):
   # create figure with 2x2 figure settings and define label and titles for each subplot
   fig, axes = plt.subplots(2, 2, figsize=(12, 7))
   title1 = 'Average Annual Temperature'
