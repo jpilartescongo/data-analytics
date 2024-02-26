@@ -309,3 +309,76 @@ def loss_percent(dataset,  title1, title2):
 
   plt.tight_layout()
   plt.show()
+
+# ----------------------------------------------------------------
+# function to plot relationship between temperature and precip
+# takes two arguments: an array with title, and the confidence level
+# outputs 2 charts in 1x2 dimensions
+def temp_precip_corr(title_arr, confidence):
+
+  varx1_temp, vary1_temp = coimbra_merged['TAVG'], coimbra_merged['LOSS_FIRES_HA']
+  varx2_temp, vary2_temp = porto_merged['TAVG'], porto_merged['LOSS_FIRES_HA']
+  varx1_precip, vary1_precip = coimbra_merged['PRCP'], coimbra_merged['LOSS_FIRES_HA']
+  varx2_precip, vary2_precip = porto_merged['PRCP'], porto_merged['LOSS_FIRES_HA']
+
+  # calculate pearson correlation coefficient for temp and precipitation
+  correlation_coefficient_temp1, p_value_temp1 = pearsonr(varx1_temp, vary1_temp)
+  correlation_coefficient_temp2, p_value_temp2 = pearsonr(varx2_temp, vary2_temp)
+  correlation_coefficient_precip1, p_value_precip1 = pearsonr(varx1_precip, vary1_precip)
+  correlation_coefficient_precip2, p_value_precip2 = pearsonr(varx2_precip, vary2_precip)
+
+  fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+  xlabel = ['Temperature (ºC)', 'Precipitation (mm)']
+  ylabel = 'Tree Cover Loss (ha)'
+
+  # scatter plot for temperature
+  axs[0].scatter(varx1_temp, vary1_temp, label='Coimbra', marker='*', s=70)
+  axs[0].scatter(varx2_temp, vary2_temp, label='Porto',  marker='o', s=50)
+  axs[0].set_xlabel(xlabel[0])
+  axs[0].set_ylabel(ylabel)
+  axs[0].set_title(title[0])
+  axs[0].legend()
+  axs[0].grid(True)
+
+  # scatter plot for precipitation
+  axs[1].scatter(varx1_precip, vary1_precip, label='Coimbra', marker='*', s=70)
+  axs[1].scatter(varx2_precip, vary2_precip, label='Porto',  marker='o', s=30)
+  axs[1].set_xlabel(xlabel[1])
+  axs[1].set_ylabel(ylabel)
+  axs[1].set_title(title[1])
+  axs[1].legend()
+  axs[1].grid(True)
+
+  plt.tight_layout()
+  plt.show()
+
+  # print orrelation coefficients and p-values
+  print("Temperature:")
+  print(f"Coimbra: Pearson Correlation Coefficient: {correlation_coefficient_temp1}, p-value: {p_value_temp1}")
+  print(f"Porto: Pearson Correlation Coefficient: {correlation_coefficient_temp2}, p-value: {p_value_temp2}")
+
+  print("\nPrecipitation:")
+  print(f"Coimbra: Pearson Correlation Coefficient: {correlation_coefficient_precip1}, p-value: {p_value_precip1}")
+  print(f"Porto: Pearson Correlation Coefficient: {correlation_coefficient_precip2}, p-value: {p_value_precip2}")
+
+  # check and print statistical significance
+  if p_value_temp1 < confidence:
+    print("\nThe correlation for temperature in Coimbra is statistically significant.")
+  else:
+    print("\nThere is no statistically significant correlation for temperature in Coimbra.")
+
+  if p_value_temp2 < confidence:
+    print("The correlation for temperature in Porto is statistically significant.")
+  else:
+    print("There is no statistically significant correlation for temperature in Porto.")
+
+  if p_value_precip1 < confidence:
+    print("The correlation for precipitation in Coimbra is statistically significant.")
+  else:
+    print("There is no statistically significant correlation for precipitation in Coimbra.")
+
+  if p_value_precip2 < confidence:
+    print("The correlation for precipitation in Porto is statistically significant.")
+  else:
+    print("There is no statistically significant correlation for precipitation in Porto.")
+
