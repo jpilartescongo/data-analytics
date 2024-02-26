@@ -337,7 +337,7 @@ def temp_precip_corr(title_arr, confidence, dataset1, dataset2):
   axs[0].scatter(varx2_temp, vary2_temp, label='Porto',  marker='o', s=50)
   axs[0].set_xlabel(xlabel[0])
   axs[0].set_ylabel(ylabel)
-  axs[0].set_title(title[0])
+  axs[0].set_title(title_arr[0])
   axs[0].legend()
   axs[0].grid(True)
 
@@ -346,7 +346,7 @@ def temp_precip_corr(title_arr, confidence, dataset1, dataset2):
   axs[1].scatter(varx2_precip, vary2_precip, label='Porto',  marker='o', s=30)
   axs[1].set_xlabel(xlabel[1])
   axs[1].set_ylabel(ylabel)
-  axs[1].set_title(title[1])
+  axs[1].set_title(title_arr[1])
   axs[1].legend()
   axs[1].grid(True)
 
