@@ -10,6 +10,7 @@ import imageio
 import matplotlib.colors as mcolors
 import seaborn as sns
 import scipy.stats as stats
+from scipy.stats import pearsonr
 
 # ------------------------------------------
 # function to plot general reference map of focus areas
@@ -312,8 +313,8 @@ def loss_percent(dataset,  title1, title2):
 
 # ----------------------------------------------------------------
 # function to plot relationship between temperature and precip
-# takes two arguments: an array with title, and the confidence level
-# outputs 2 charts in 1x2 dimensions
+# takes 4 arguments: an array with title, and the confidence level
+# city1 dataset, and city2 dataset; outputs a 1x2 figure/subplot
 def temp_precip_corr(title_arr, confidence, dataset1, dataset2):
 
   varx1_temp, vary1_temp = dataset1['TAVG'], dataset1['LOSS_FIRES_HA']
