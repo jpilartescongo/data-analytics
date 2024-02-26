@@ -314,12 +314,12 @@ def loss_percent(dataset,  title1, title2):
 # function to plot relationship between temperature and precip
 # takes two arguments: an array with title, and the confidence level
 # outputs 2 charts in 1x2 dimensions
-def temp_precip_corr(title_arr, confidence):
+def temp_precip_corr(title_arr, confidence, dataset1, dataset2):
 
-  varx1_temp, vary1_temp = coimbra_merged['TAVG'], coimbra_merged['LOSS_FIRES_HA']
-  varx2_temp, vary2_temp = porto_merged['TAVG'], porto_merged['LOSS_FIRES_HA']
-  varx1_precip, vary1_precip = coimbra_merged['PRCP'], coimbra_merged['LOSS_FIRES_HA']
-  varx2_precip, vary2_precip = porto_merged['PRCP'], porto_merged['LOSS_FIRES_HA']
+  varx1_temp, vary1_temp = dataset1['TAVG'], dataset1['LOSS_FIRES_HA']
+  varx2_temp, vary2_temp = dataset2['TAVG'], dataset2['LOSS_FIRES_HA']
+  varx1_precip, vary1_precip = dataset1['PRCP'], dataset1['LOSS_FIRES_HA']
+  varx2_precip, vary2_precip = dataset2['PRCP'], dataset2['LOSS_FIRES_HA']
 
   # calculate pearson correlation coefficient for temp and precipitation
   correlation_coefficient_temp1, p_value_temp1 = pearsonr(varx1_temp, vary1_temp)
