@@ -279,3 +279,33 @@ def create_weather_comparison(coimbra_merged, porto_merged):
   # adjust layout for display purposes then show the plot
   plt.tight_layout()
   plt.show()
+
+
+# ----------------------------------------------------------------
+# functions to plot the cover loss attributed to fires
+def plot_tree_cover_loss(x_data, y_data, xlabel, ylabel, title, color):
+  plt.bar(x_data, y_data, color=color)
+
+  for bar in plt.bar(x_data, y_data, color=color):
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2, yval, f'{yval:.2f}%', ha='center', va='bottom', size=8)
+
+  plt.xlabel(xlabel)
+  plt.ylabel(ylabel)
+  plt.ylim(0, 65)
+  plt.title(title)
+
+def loss_percent(dataset,  title1, title2):
+  plt.figure(figsize=(20, 6))
+
+  x_var, y_var = 'YEAR', 'PERCENT'
+  xlabel, ylabel = 'Year', '% of Tree Cover Loss Due to Fire'
+
+  plt.subplot(1, 2, 1)
+  plot_tree_cover_loss(dataset[x_var][22:], dataset[y_var][22:], xlabel, ylabel, title1, color='orchid')
+
+  plt.subplot(1, 2, 2)
+  plot_tree_cover_loss(dataset[x_var][:22], dataset[y_var][:22], xlabel, ylabel, title2, color='coral')
+
+  plt.tight_layout()
+  plt.show()
