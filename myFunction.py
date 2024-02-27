@@ -362,3 +362,36 @@ def temp_precip_corr(title_arr, confidence, dataset1, dataset2):
   print(f"Coimbra: Pearson Correlation Coefficient: {correlation_coefficient_precip1}, p-value: {p_value_precip1}")
   print(f"Porto: Pearson Correlation Coefficient: {correlation_coefficient_precip2}, p-value: {p_value_precip2}")
 
+# ----------------------------------------------------------------
+# function to plot 10 histograms for temp and precip for 5 cities
+# takes 4 arguments: data array, color array, labels for x and y
+def hist10(ax, data, title, x_label, y_label, mean_value, color, hist_x_lim, hist_y_lim, mean_label_x, mean_label_y, mean_text):
+  data.plot(kind='hist', bins=20, ax=ax, color=color, edgecolor='black', linewidth=0.5)
+  ax.set_title(title)
+  ax.spines[['top', 'right']].set_visible(True)
+  ax.set_xlabel(x_label)
+  ax.set_ylabel(y_label)
+  ax.axvline(mean_value, color='black', linestyle='dashed', linewidth=2, label='Mean')
+  ax.set_xlim(hist_x_lim)
+  ax.set_ylim(hist_y_lim)
+  ax.text(mean_label_x, mean_label_y, f'{mean_text}: {mean_value:.2f}', ha='center')
+
+def create_hist10(dataset, colors, x_axis, y_axis):
+  fig, axs = plt.subplots(5, 2, figsize=(15, 15))
+  hist_x_lim = [(-16, 32), (-5, 530)]
+  hist_y_lim = [(0, 80), (0, 250)]
+  mean_label_x = [-8, 430]
+  mean_label_y = [73, 230]
+
+  city = ['Coimbra', 'Corpus Christi', 'Glasgow', 'Houghton', 'Porto']
+  mean_text = 'Avg.'
+
+  for i in range(5):
+    for j in range(2):
+      index = i * 2 + j
+      mean_value = dataset[i]['TAVG' if j == 0 else 'PRCP'].mean()
+      title = f'{x_axis[j]} - {city[i]}'
+      hist10(axs[i, j], dataset[i]['TAVG' if j == 0 else 'PRCP'], title, x_axis[j], y_axis, mean_value, colors[j], hist_x_lim[j], hist_y_lim[j], mean_label_x[j], mean_label_y[j], f'{mean_text} {x_axis[j]}')
+
+  # plot graph
+  plt.tight_layout()
