@@ -456,7 +456,7 @@ def create_trends4(locations, titles):
   plt.show()
 
 # ----------------------------------------------------------------
-# sarima function that uses sarima to remove seasonsability of data
+# sarima function that useed to remove seasonality of data
 def sarima(data, col, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12)):
   model = SARIMAX(stations[col], order=order, seasonal_order=seasonal_order)
   result = model.fit(disp=False)
