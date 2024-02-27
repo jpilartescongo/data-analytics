@@ -362,24 +362,3 @@ def temp_precip_corr(title_arr, confidence, dataset1, dataset2):
   print(f"Coimbra: Pearson Correlation Coefficient: {correlation_coefficient_precip1}, p-value: {p_value_precip1}")
   print(f"Porto: Pearson Correlation Coefficient: {correlation_coefficient_precip2}, p-value: {p_value_precip2}")
 
-  # check and print statistical significance
-  if p_value_temp1 < confidence:
-    print("\nThe correlation for temperature in Coimbra is statistically significant.")
-  else:
-    print("\nThere is no statistically significant correlation for temperature in Coimbra.")
-
-  if p_value_temp2 < confidence:
-    print("The correlation for temperature in Porto is statistically significant.")
-  else:
-    print("There is no statistically significant correlation for temperature in Porto.")
-
-  if p_value_precip1 < confidence:
-    print("The correlation for precipitation in Coimbra is statistically significant.")
-  else:
-    print("There is no statistically significant correlation for precipitation in Coimbra.")
-
-  if p_value_precip2 < confidence:
-    print("The correlation for precipitation in Porto is statistically significant.")
-  else:
-    print("There is no statistically significant correlation for precipitation in Porto.")
-
