@@ -362,6 +362,7 @@ def temp_precip_corr(title_arr, confidence, dataset1, dataset2):
   print(f"Coimbra: Pearson Correlation Coefficient: {correlation_coefficient_precip1}, p-value: {p_value_precip1}")
   print(f"Porto: Pearson Correlation Coefficient: {correlation_coefficient_precip2}, p-value: {p_value_precip2}")
 
+
 # ----------------------------------------------------------------
 # function to plot 10 histograms for temp and precip for 5 cities
 # takes 4 arguments: data array, color array, labels for x and y
@@ -395,3 +396,23 @@ def create_hist10(dataset, colors, x_axis, y_axis):
 
   # plot graph
   plt.tight_layout()
+
+  
+# ----------------------------------------------------------------
+# function to create a column with the name of the cities
+# helps to create a cleaner set of boxplots, only takes one 
+# argument: the dataset
+def create_city_col(dataset):
+  for index, row in dataset.iterrows():
+    if row['NAME'].startswith('PORTO'):
+      dataset.at[index, 'CITY_NAME'] = 'Porto'
+    elif row['NAME'].startswith('COIMBRA'):
+      dataset.at[index, 'CITY_NAME'] = 'Coimbra'
+    elif row['NAME'].startswith('CORPUS'):
+      dataset.at[index, 'CITY_NAME'] = 'Corpus Christi'
+    elif row['NAME'].startswith('HANCOCK'):
+      dataset.at[index, 'CITY_NAME'] = 'Houghton'
+    elif row['NAME'].startswith('PAISLEY'):
+      dataset.at[index, 'CITY_NAME'] = 'Glasgow'
+    else:
+      print('Dataset does not belong here')
