@@ -11,6 +11,7 @@ import matplotlib.colors as mcolors
 import seaborn as sns
 import scipy.stats as stats
 from scipy.stats import pearsonr
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 # ------------------------------------------
 # function to plot general reference map of focus areas
