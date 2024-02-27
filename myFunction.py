@@ -416,3 +416,41 @@ def create_city_col(dataset):
       dataset.at[index, 'CITY_NAME'] = 'Glasgow'
     else:
       print('Dataset does not belong here')
+
+
+# ----------------------------------------------------------------
+# function to creates trend for temp and precip for 4 cities
+def trends4(ax1, ax2, data, title):
+    prcp_line, = ax1.plot(data['DATE'], data['PRCP'], linewidth=1.0, label='Precipitation')
+    ax1.set_xlabel('Year')
+    ax1.set_ylabel('Precipitation (mm)')
+    ax1.set_title(title)
+    ax1.set_ylim(0, 650)
+
+    temp_line, = ax2.plot(data['DATE'], data['TAVG'], 'k--', linewidth=1.0, label='Temperature')
+    ax2.set_ylabel('Temperature (ºC)')
+    ax2.set_ylim(-15, 35)
+
+    ax2_twin = ax1.twinx()
+    ax2_twin.set_ylim(-15, 35)
+
+    return prcp_line, temp_line
+
+def create_trends4(locations, titles):
+  fig, axs = plt.subplots(2, 2, figsize=(13, 6))
+  xlabel, ylabel = 'Year', ['Precipitation (mm)', 'Temperature (ºC)']
+  legend_lines = []
+
+  for i, ax1 in enumerate(axs.flat):
+    ax2 = ax1.twinx()
+    prcp_line, temp_line = trends4(ax1, ax2, locations[i], titles[i])
+    
+    # Collecting lines for legend from the top right plot
+    if i == 1:
+      legend_lines.extend([prcp_line, temp_line])
+
+  axs[0, 1].legend(legend_lines, ['Precipitation', 'Temperature'], loc='upper right')
+
+  # display
+  plt.tight_layout()
+  plt.show()
