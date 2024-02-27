@@ -458,8 +458,8 @@ def create_trends4(locations, titles):
 
 # ----------------------------------------------------------------
 # sarima function that useed to remove seasonality of data
-def sarima(data, col, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12)):
-  model = SARIMAX(stations[col], order=order, seasonal_order=seasonal_order)
+def sarima(dataset, col, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12)):
+  model = SARIMAX(dataset[col], order=order, seasonal_order=seasonal_order)
   result = model.fit(disp=False)
-  stations[col + '_SARIMA'] = result.resid
-  return stations
+  dataset[col + '_SARIMA'] = result.resid
+  return dataset
