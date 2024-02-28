@@ -433,3 +433,57 @@ def sarima(dataset, col, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12)):
   result = model.fit(disp=False)
   dataset[col + '_SARIMA'] = result.resid
   return dataset
+
+# ----------------------------------------------------------------
+# function to creates trend relationship for temp and precip for
+# all cities: first plots them in their original form, then plots
+# them taking sarima tweaks into account
+
+fig10_axis = ['Year', 'Precipitation (mm)', 'Temperature (ºC)']
+fig10_labels = ['Precipitation', 'Temperature']
+
+# intermediate function that helps to set the graphs/plots layout
+def trends10(ax1, ax2, ax3, ax4, data, title):
+  prcp_line1, = ax1.plot(data['DATE'], data['PRCP'], linewidth=1.0, label=fig10_labels[0], color='orchid')
+  prcp_line2, = ax3.plot(data['DATE'], data['PRCP_SARIMA'], linewidth=1.0, label=fig10_labels[0], color='orchid')
+  ax1.set_xlabel(fig10_axis[0])
+  ax1.set_ylabel(fig10_axis[1])
+  ax1.set_title(title)
+  ax1.set_ylim(0, 650)
+
+  ax3.set_xlabel(fig10_axis[0])
+  ax3.set_ylabel(fig10_axis[1])
+  ax3.set_title(title)
+  ax3.set_ylim(0, 650)
+
+  temp_line1, = ax2.plot(data['DATE'], data['TAVG'], 'k--', linewidth=1.0, label=fig10_labels[1], color='black')
+  temp_line2, = ax4.plot(data['DATE'], data['TAVG_SARIMA'], 'k--', linewidth=1.0, label=fig10_labels[1], color='black')
+  ax2.set_ylabel(fig10_axis[2])
+  ax2.set_ylim(-15, 35)
+  ax4.set_ylabel(fig10_axis[2])
+  ax4.set_ylim(-15, 35)
+
+  return prcp_line1, temp_line1, prcp_line2, temp_line2
+
+def create_trends10(locations):
+  fig, axs = plt.subplots(5, 2, figsize=(15, 12))
+  titles = ['Corpus Christi', 'Coimbra', 'Glasgow', 'Houghton', 'Porto']
+
+  # plots displaying precipitation and temperature trends before
+  # and after the implementation of sarima
+  for i, (city, title) in enumerate(zip(locations, titles)):
+    ax1 = axs[i, 0]
+    ax2 = ax1.twinx()
+    ax3 = axs[i, 1]
+    ax4 = ax3.twinx()
+    prcp_line1, temp_line1, prcp_line2, temp_line2 = trends10(ax1, ax2, ax3, ax4, city, title)
+    ax1.set_title(f'{title}')
+
+    # sarima plots
+    sarima_prcp_line, sarima_temp_line, _, _ = trends10(ax1, ax2, ax3, ax4, city, title)
+    ax3.set_title(f'{title} (SARIMA)')
+
+  # set legend for all plots to appear on top right, then display plots
+  axs[0, 1].legend([sarima_prcp_line, sarima_temp_line], [fig10_labels[0], fig10_labels[1]], loc='upper right')
+  plt.tight_layout()
+  plt.show()
