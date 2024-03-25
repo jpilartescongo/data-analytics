@@ -6,7 +6,7 @@ import os, pandas as pd
 # ------------------------------------
 # merge multiple csv files with tide
 # data into a single one
-def merge_csvs(folder_path, csvFilename):
+def merge_csvs(folder_path, csv_filename):
   
   # initialize an empty DataFrame to store merged data
   # then loop through the files in the folder to sort
@@ -29,7 +29,38 @@ def merge_csvs(folder_path, csvFilename):
   merged_df.sort_values(by=["Date", "Time (GMT)"], inplace=True)
 
   # save the merged dataframe as a csv file then and as a variable, and return it
-  merged_file_path = os.path.join(folder_path, "csvFilename.csv")
+  merged_file_path = os.path.join(folder_path, csv_filename)
   merged_df.to_csv(merged_file_path, index=False)
-  mergedFile = merged_df
-  return mergedFile
+  merged_filename = merged_df
+  return merged_filename
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
