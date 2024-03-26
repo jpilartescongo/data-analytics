@@ -6,7 +6,7 @@ import os, pandas as pd
 # ------------------------------------
 # merge multiple csv files with tide
 # data into a single one
-def merge_csvs(folder_path, csv_filename):
+def merge_csvs(folder_path, csv_filename, init_chars):
   
   # initialize an empty DataFrame to store merged data
   # then loop through the files in the folder to sort
