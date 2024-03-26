@@ -14,7 +14,7 @@ def merge_csvs(folder_path, csv_filename):
   merged_df = pd.DataFrame()
   files_to_merge = []
   for filename in os.listdir(folder_path):
-    if filename.startswith("nb_") and filename.endswith(".csv"):
+    if filename.startswith(init_chars) and filename.endswith(".csv"):
       files_to_merge.append(filename)
   files_to_merge.sort()
 
