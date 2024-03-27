@@ -1,11 +1,10 @@
-# functions for optimized assignment 3
-# ------------------------------------
+# functions for assignment 3 (data analytics)
+# ----------------------------------------------
 # import auxiliary packages/modules
 import os, pandas as pd
 
-# ------------------------------------
-# merge multiple csv files with tide
-# data into a single one
+# ----------------------------------------------
+# merge multiple csv files into a single one
 def merge_csvs(folder_path, csv_filename, init_chars):
   
   # initialize an empty DataFrame to store merged data
@@ -34,9 +33,29 @@ def merge_csvs(folder_path, csv_filename, init_chars):
   merged_filename = merged_df
   return merged_filename
 
+# ----------------------------------------------
+# extract month from a csv and add to new column
 
+def extract_month(dataframe, date_column):
+  # set month names for later usage
+  month_mapping = {
+      1: 'January',
+      2: 'February',
+      3: 'March',
+      4: 'April',
+      5: 'May',
+      6: 'June',
+      7: 'July',
+      8: 'August',
+      9: 'September',
+      10: 'October',
+      11: 'November',
+      12: 'December'
+  }
 
-
+  # create a new column to store month names as a string
+  dataframe['Month_Name'] = dataframe[date_column].dt.month.map(month_mapping)
+  return dataframe
 
 
 
