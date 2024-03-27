@@ -6,6 +6,7 @@ import os, pandas as pd
 # ----------------------------------------------
 # merge multiple csv files into a single one
 def merge_csvs(folder_path, csv_filename, init_chars):
+  
   # initialize an empty DataFrame to store merged data
   # then loop through the files in the folder to sort
   # them based on date first then time
@@ -22,34 +23,12 @@ def merge_csvs(folder_path, csv_filename, init_chars):
     df = pd.read_csv(file_path)
     merged_df = pd.concat([merged_df, df], ignore_index=True)
   
-  # convert date and time columns to datetime then resample to hour frequency
-  merged_df['DateTime'] = pd.to_datetime(merged_df['Date'] + ' ' + merged_df['Time (GMT)'])
-  merged_df.drop(['Date', 'Time (GMT)'], axis=1, inplace=True)
-  merged_df = merged_df.set_index('DateTime').resample('H').mean(numeric_only=True).reset_index()
+  merged_df["Date"] = pd.to_datetime(merged_df["Date"])
+  merged_df["Time (GMT)"] = pd.to_datetime(merged_df["Time (GMT)"], format='%H:%M').dt.time
+  merged_df.sort_values(by=["Date", "Time (GMT)"], inplace=True)
 
-  # save the merged dataframe as a csv file and return merged dataframe
+  # save the merged dataframe as a csv file then and as a variable, and return it
   merged_file_path = os.path.join(folder_path, csv_filename)
   merged_df.to_csv(merged_file_path, index=False)
-  return merged_df
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  merged_filename = merged_df
+  return merged_filename
