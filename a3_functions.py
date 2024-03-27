@@ -5,7 +5,7 @@ import os, pandas as pd
 
 # ----------------------------------------------
 # get the count of nans for various variables
-def get_count_of_nans(dataset, variables):
-  nan_count = dataset[variables].isna().sum()
-  nan_count_df = pd.DataFrame(nan_count)
-  return nan_count_df
+def count_nan_values(df, vars):
+  nan_counts = df[vars].isna().sum()
+  nan_counts_df = pd.DataFrame(nan_counts, columns=['Count'])
+  return nan_counts_df
