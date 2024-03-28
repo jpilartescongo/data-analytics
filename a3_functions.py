@@ -3,6 +3,17 @@ import os, pandas as pd
 import matplotlib.pyplot as plt
 
 # -------------------------------------------------------------
+# set up function to create generic plot for input datasets
+def generic_plot(data, x, y, color, label, title, ylabel):
+  plt.plot(data[x], data[y], color=color, label=label)
+  plt.title(title, fontsize=11)
+  plt.ylabel(ylabel)
+  plt.legend()
+  plt.ylim(-0.5, 1)
+  plt.grid(True)
+  plt.tight_layout()
+
+# -------------------------------------------------------------
 # get the count of nans for various variables
 def get_count_of_nans(df, vars):
   nan_counts = df[vars].isna().sum()
