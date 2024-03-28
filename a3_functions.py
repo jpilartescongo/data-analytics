@@ -53,13 +53,13 @@ def create_linegraphs(dataframe, title):
   dataframe['wind_speed'].plot(kind='line', ax=ax1, color='coral', label='Wind Speed')
   dataframe['wind_gust'].plot(kind='line', ax=ax1, color='darkorchid', label='Wind Gust')
   ax1.set_xlabel('Date')
-  ax1.set_ylabel('Wind Gust & Speed', color='black')
+  ax1.set_ylabel('Wind Gust & Speed (m/s)', color='black')
   ax1.tick_params(axis='y', labelcolor='black')
 
   # secondary y axis (wind speed and wind gust)
   ax2 = ax1.twinx()
   dataframe['water_level'].plot(kind='line', linestyle='--', ax=ax2, color='black', linewidth=1, label='Water Level')
-  ax2.set_ylabel('Water Level', color='black')
+  ax2.set_ylabel('Water Level (m)', color='black')
   ax2.tick_params(axis='y', labelcolor='black')
 
   # customize the resulting graph
