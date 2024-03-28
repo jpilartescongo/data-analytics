@@ -1,5 +1,6 @@
 # import auxiliary packages/modules
 import os, pandas as pd
+import matplotlib.pyplot as plt
 
 # -------------------------------------------------------------
 # get the count of nans for various variables
