@@ -115,6 +115,8 @@ def create_hexbin(x, y, bar_label, x_label, y_label):
 # function to create periodogram for nueces bay and eagle point
 def create_periodogram(df_array):
   plt.figure(figsize=(12, 4))
+  labels = ['Nueces Bay', 'Eagle Point']
+  
   for i, dataset in enumerate(df_array, 1):
     frequency = 0.5
     # set frequency and pxx
