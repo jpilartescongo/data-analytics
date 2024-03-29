@@ -111,6 +111,10 @@ def create_hexbin(x, y, bar_label, x_label, y_label):
   plt.ylabel(y_label)
 
 # -------------------------------------------------------------
+# function to create periodogram for nueces bay and eagle point
+
+
+# -------------------------------------------------------------
 # function to create correlation plots for nueces bay and eagle
 # point using a variety of tide station variables
 def create_corr_plots(dataframe, plot_title, figsize):
