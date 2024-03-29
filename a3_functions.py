@@ -4,6 +4,7 @@ import os, pandas as pd
 import scipy.stats as stats
 import matplotlib.pyplot as plt
 from scipy.stats import pearsonr
+from scipy.signal import periodogram
 
 # -------------------------------------------------------------
 # set up function to create generic plot for input datasets
