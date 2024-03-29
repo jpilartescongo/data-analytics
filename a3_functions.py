@@ -84,7 +84,7 @@ def create_linegraph(dataframe, title):
   # primary y axis (wind speed and wind gust)
   dataframe['wind_speed'].plot(kind='line', ax=ax1, color='coral', label='Wind Speed')
   dataframe['wind_gust'].plot(kind='line', ax=ax1, color='darkorchid', label='Wind Gust')
-  ax1.set_xlabel('Date')
+  ax1.set_xlabel('Date Index (July 2020)')
   ax1.set_ylabel('Wind Gust & Speed (m/s)', color='black')
   ax1.tick_params(axis='y', labelcolor='black')
 
