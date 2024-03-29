@@ -3,6 +3,7 @@ import seaborn as sns
 import os, pandas as pd
 import scipy.stats as stats
 import matplotlib.pyplot as plt
+from scipy.stats import pearsonr
 
 # -------------------------------------------------------------
 # set up function to create generic plot for input datasets
