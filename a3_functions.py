@@ -14,6 +14,23 @@ def generic_plot(data, x, y, color, label, title, ylabel):
   plt.tight_layout()
 
 # -------------------------------------------------------------
+# function to check if dataset is normally distributed 
+# uses a given dataset in pandas pf format
+# uses string that represents attribute of interest
+def check_distribution(dataset, attr):
+  stat, p = stats.kstest(dataset[attr], 'norm', (dataset[attr].mean(), dataset[attr].std()))
+
+  # print the results
+  print('K-S test statistic:', stat)
+  print('p-value:', p)
+
+  # interpret the results
+  if p > 0.05:
+    print('The data is normally distributed.')
+  else:
+    print('The data is not normally distributed.')
+
+# -------------------------------------------------------------
 # get the count of nans for various variables
 def get_count_of_nans(df, vars):
   nan_counts = df[vars].isna().sum()
