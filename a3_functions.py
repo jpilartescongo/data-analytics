@@ -112,7 +112,24 @@ def create_hexbin(x, y, bar_label, x_label, y_label):
 
 # -------------------------------------------------------------
 # function to create periodogram for nueces bay and eagle point
-
+def create_periodogram(df_array):
+  plt.figure(figsize=(12, 4))
+  for i, dataset in enumerate(df_array, 1):
+    frequency = 0.5
+    # set frequency and pxx
+    # pxx is the power spectral density
+    frequencies, pxx = periodogram(dataset['water_level'], frequency)
+    
+    plt.subplot(1, 2, i)
+    plt.semilogy(frequencies, pxx)
+    plt.xlabel('Frequency (cycles/hour)')
+    plt.ylabel('Power Spectral Density')
+    plt.title(f'Periodogram of Water Level Variation ({labels[i-1]})')
+    plt.grid(True)
+    plt.ylim(1e-30, 1e3)
+    
+  plt.suptitle('Water Level Variation Periodograms (2020)')
+  plt.tight_layout()
 
 # -------------------------------------------------------------
 # function to create correlation plots for nueces bay and eagle
