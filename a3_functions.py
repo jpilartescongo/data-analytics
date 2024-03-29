@@ -111,28 +111,25 @@ def create_hexbin(x, y, bar_label, x_label, y_label):
   plt.ylabel(y_label)
 
 # -------------------------------------------------------------
-# function to create 8 correlation plots
-def create_corr_plots(dataframe, plot_title):
-  xlabels = ['Wind Speed (m/s)', 'Wind Gust (m/s)', 'Wind Direction (º)', 'Water Temperature (ºC)', 'Wind Speed (m/s)', 'Wind Speed (m/s)']
-  ylabels = ['Water Level (m) - MLLW', 'Water Level (m) - MLLW', 'Water Level (m) - MLLW', 'Water Level (m) - MLLW', 'Water Temperature (ºC)', 'Wind Gust (m/s)']
+# function to create correlation plots for nueces bay and eagle
+# point using a variety of tide station variables
+def create_corr_plots(dataframe, plot_title, figsize):
+  xlabels = ['Wind Speed (m/s)', 'Water Temperature (ºC)', 'Wind Speed (m/s)', 'Wind Gust (m/s)']
+  ylabels = ['Wind Gust (m/s)', 'Water Level (m) - MLLW', 'Water Level (m) - MLLW', 'Water Level (m) - MLLW']
 
-  fig, axes = plt.subplots(2, 3, figsize=(15, 6))
+  fig, axes = plt.subplots(2, 2, figsize=figsize)
 
-  combinations = [('wind_speed', 'wind_gust'), ('water_level', 'wind_speed'), ('water_level', 'wind_gust'), 
-          ('water_level', 'wind_dir'), ('water_level', 'water_temp'), ('wind_speed', 'water_temp')]
+  combinations = [('wind_speed', 'wind_gust'), ('water_temp', 'water_level'), ('wind_speed', 'water_level'), ('wind_gust', 'water_level')]
 
   for pair, ax, xlabel, ylabel in zip(combinations, axes.flatten(), xlabels, ylabels):
     sns.regplot(data=dataframe, x=pair[0], y=pair[1], ax=ax)
     correlation_coefficient, _ = pearsonr(dataframe[pair[0]], dataframe[pair[1]])
-    ax.text(0.5, 0.95, f"R = {correlation_coefficient:.2f}", ha='center', va='top', transform=ax.transAxes, fontsize=10, fontweight='bold', color='red')
+    ax.text(0.5, 0.95, f"R = {correlation_coefficient:.2f}", ha='center', va='top', transform=ax.transAxes, fontsize=10, fontweight='bold')
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
 
   plt.suptitle(plot_title)
   plt.tight_layout()
-  
-
-
 
 
 
