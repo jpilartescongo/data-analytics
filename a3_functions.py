@@ -74,7 +74,7 @@ def fill_nans(dataframe):
 # -------------------------------------------------------------
 # function to create line graph using wind speed, wind gust, 
 # and water levels for tide stations
-def create_linegraphs(dataframe, title):
+def create_linegraph(dataframe, title):
   # plot showing the relationship between
   # water level wind speed, and wind gusts
   fig, ax1 = plt.subplots(figsize=(13, 5))
@@ -89,7 +89,7 @@ def create_linegraphs(dataframe, title):
   # secondary y axis (wind speed and wind gust)
   ax2 = ax1.twinx()
   dataframe['water_level'].plot(kind='line', linestyle='--', ax=ax2, color='black', linewidth=1, label='Water Level')
-  ax2.set_ylabel('Water Level (m)', color='black')
+  ax2.set_ylabel('Water Level (m) - MLLW', color='black')
   ax2.tick_params(axis='y', labelcolor='black')
 
   # customize the resulting graph
@@ -108,6 +108,8 @@ def create_hexbin(x, y, bar_label, x_label, y_label):
   plt.xlabel(x_label)
   plt.ylabel(y_label)
 
+# -------------------------------------------------------------
+# function to create 8 correlation plots
 
 
 
