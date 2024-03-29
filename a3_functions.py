@@ -1,5 +1,6 @@
 # import auxiliary packages/modules
 import os, pandas as pd
+import scipy.stats as stats
 import matplotlib.pyplot as plt
 
 # -------------------------------------------------------------
