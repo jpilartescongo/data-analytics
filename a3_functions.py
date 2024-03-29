@@ -152,8 +152,30 @@ def create_corr_plots(dataframe, plot_title, figsize):
   plt.suptitle(plot_title)
   plt.tight_layout()
 
+# -------------------------------------------------------------
+# function that creates plots showing the distribution of water
+# level data for different stations according to day of week
+def create_wl_plots(nb_july_2020, ep_july_2020, labels):
+  fig, axes = plt.subplots(2, 2, figsize=(14, 6))
 
+  datasets = [(nb_july_2020.sort_values('day'), labels[0]), 
+              (ep_july_2020.sort_values('day'), labels[1]), 
+              (nb_july_2020, labels[0]), 
+              (ep_july_2020, labels[1])]
 
+  for i, ((data, label), ax) in enumerate(zip(datasets, axes.flatten())):
+    if i < 2:
+      sns.boxenplot(data=data, x='day_of_week', y='water_level', ax=ax)
+    else:
+      sns.boxplot(data=data, x='day_of_week', y='water_level', ax=ax)
+    ax.set_title(label)
+    ax.set_xlabel('')
+    ax.set_ylabel('Water Level (m) - MLLW')
+    ax.set_ylim(-0.25, 1.6)
+
+  fig.suptitle('Weekly Distribution of Water Levels (July 2020)')
+  plt.tight_layout()
+  plt.show()
 
 
 
