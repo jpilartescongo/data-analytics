@@ -189,8 +189,20 @@ def time_split(dataframe):
   dataframe['month'] = dataframe['date_time'].dt.month.map(month_names)
   dataframe['day_of_week'] = dataframe['date_time'].dt.strftime('%A')
 
+# -------------------------------------------------------------
+# general two general plots at bob hall pier
+def generate_plots(dataframe1, dataframe2):
+  fig, axes = plt.subplots(1, 2, figsize=(20, 8))
+  
+  for i, df, title in zip(range(2), [dataframe1, dataframe2], ['Training Dataset', 'Test Dataset']):
+    axes[i].plot(df['date'], df['water_level'])
+    axes[i].set_title(f'Water Levels (in MLLW) on {title} - Based on 6-minute Averages')
+    axes[i].set_ylabel('Water level (ft) - MLLW')
+    axes[i].set_xlabel('Year-Month')
+    axes[i].grid(True)
 
-
+  plt.tight_layout()
+  plt.show()
 
 
 
