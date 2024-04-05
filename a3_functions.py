@@ -180,8 +180,14 @@ def create_wl_plots(nb_july_2020, ep_july_2020, labels):
   plt.tight_layout()
   plt.show()
 
-
-
+# -------------------------------------------------------------
+# split time frames into date, time, month, and day of the week
+def time_split(dataframe):
+  dataframe['date'] = dataframe['date_time'].dt.date
+  dataframe['time'] = dataframe['date_time'].dt.time
+  month_names = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
+  dataframe['month'] = dataframe['date_time'].dt.month.map(month_names)
+  dataframe['day_of_week'] = dataframe['date_time'].dt.strftime('%A')
 
 
 
