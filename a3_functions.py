@@ -236,6 +236,16 @@ def distribution_plots(training_df, test_df):
   plt.tight_layout()
   plt.show()
 
+# -------------------------------------------------------------
+# select all records that fulfill assignment expectations of 
+# predicting records where time is 00:00:00 or 12:00:00
+def select_records_by_time(dataframe):
+  dataframe['date_time'] = pd.to_datetime(dataframe['date_time'])
+  dataframe['time'] = dataframe['date_time'].dt.strftime('%H:%M:%S')
+  selected_records = dataframe[(dataframe['time'] == '00:00:00') | (dataframe['time'] == '12:00:00')].copy()
+  selected_records.drop(columns=['time'], inplace=True)
+
+  return selected_records
 
 
 
