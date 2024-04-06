@@ -206,8 +206,35 @@ def generate_plots(dataframe1, dataframe2):
 
 
 # -------------------------------------------------------------
-# plot different variables according to time
+# figure with four subplots showing the distribution of training 
+# and test data points; training is according to month and test
+# is according to day of week
+def distribution_plots(training_df, test_df):
+  fig, axes = plt.subplots(2, 2, figsize=(15, 7))
 
+  # set global parameters
+  var1, var2 = 'month', 'water_level'
+  color, edge_clr = 'darkorchid', 'black'
+  labels = ['Training Dataset (Jan 1, 2017 - Dec 31, 2019)', 'Test Dataset (Jan 1, 2020 - Oct 21, 2020)']
+
+  for i, data in enumerate([training_df, test_df]):
+      # create box plots (according to month) as top two figures
+      sns.boxplot(data=data, x=var1, y=var2, whis=(0, 100), ax=axes[0][i])
+      axes[0][i].set_ylim(-2, 6)
+      axes[0][i].set_title(labels[i], fontsize=11)
+      axes[0][i].set_xlabel('')
+      axes[0][i].set_ylabel('Water Level (m) - MLLW')
+      axes[0][i].tick_params(axis='x', rotation=45)
+
+      # create violin plots (according to day of week) as bottom two figures
+      sns.violinplot(data=data, x='day_of_week', y='water_level', hue='day_of_week', split=True, ax=axes[1][i])
+      axes[1][i].set_title(labels[i])
+      axes[1][i].set_xlabel('')
+      axes[1][i].set_ylabel('Water Level (m) - MLLW')
+
+  plt.suptitle('Water Levels (in MLLW) from Training and Testing Datasets', fontsize=13)
+  plt.tight_layout()
+  plt.show()
 
 
 
