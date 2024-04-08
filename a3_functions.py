@@ -192,18 +192,17 @@ def time_split(dataframe):
 # -------------------------------------------------------------
 # general two general plots at bob hall pier
 def generate_plots(dataframe1, dataframe2):
-  fig, axes = plt.subplots(1, 2, figsize=(15, 5))
+  fig, axes = plt.subplots(1, 2, figsize=(16, 5))
   
   for i, df, title in zip(range(2), [dataframe1, dataframe2], ['Training Dataset', 'Test Dataset']):
     axes[i].plot(df['date'], df['water_level'])
     axes[i].set_title(f'Water Levels (in MLLW) on {title} - Based on 6-minute Averages')
     axes[i].set_ylabel('Water level (ft) - MLLW')
-    axes[i].set_xlabel('Year-Month')
+    axes[i].set_xlabel('Date (YYYY-MM)')
     axes[i].grid(True)
 
   plt.tight_layout()
   plt.show()
-
 
 # -------------------------------------------------------------
 # figure with four subplots showing the distribution of training 
