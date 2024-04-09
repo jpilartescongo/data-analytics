@@ -8,6 +8,13 @@ from scipy.signal import periodogram
 from sklearn.metrics import r2_score, mean_absolute_error
 from sklearn.metrics import mean_squared_error, median_absolute_error
 
+import sys
+import numpy as np
+from os.path import join
+from sklearn.impute import KNNImputer
+from IPython.display import clear_output
+from statsmodels.graphics.tsaplots import plot_pacf
+
 # -------------------------------------------------------------
 # set up function to create generic plot for input datasets
 def generic_plot(data, x, y, color, label, title, ylabel):
