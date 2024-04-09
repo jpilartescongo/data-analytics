@@ -5,7 +5,8 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 from scipy.stats import pearsonr
 from scipy.signal import periodogram
-from sklearn.metrics import mean_squared_error, median_absolute_error, r2_score
+from sklearn.metrics import r2_score, mean_absolute_error
+from sklearn.metrics import mean_squared_error, median_absolute_error
 
 # -------------------------------------------------------------
 # set up function to create generic plot for input datasets
