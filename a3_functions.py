@@ -286,14 +286,26 @@ def lstm_loss(history, title):
 
 # -------------------------------------------------------------
 # function to plot lstm prediction graph (pred vs actual)
-
 def plot_lstm_prediction(y_pred, y_test, title):
   y_pred = pd.Series(y_pred.flatten(), index=y_test.index)
   plt.figure(figsize=(15, 5))
   plt.plot(y_pred, label='Water level (predicted)', color='darkorchid')
   plt.plot(y_test, label='Water level (actual)', color='coral')
-  plt.title('LSTM with Adam + MSE (0.001 learning rate): actual vs predicted water levels (in MLLW)')
+  plt.title(title)
   plt.xlabel('Date (YYYY-MM)')
   plt.ylabel('Water Level (ft) - MLLW')
+  plt.legend()
+  plt.show()
+
+# -------------------------------------------------------------
+# function to plot rf prediction graph (pred vs actual)
+def plot_rf_prediction(y_pred_rf, y_test, title):
+  y_pred_rf = pd.Series(y_pred_rf.flatten(), index=y_test.index)
+  plt.figure(figsize=(15, 5))
+  plt.plot(y_pred_rf, label='Water level (predicted)', color='darkorchid')
+  plt.plot(y_test, label='Water level (actual)', color='coral')
+  plt.xlabel('Date (YYYY-MM)')
+  plt.ylabel('Water Level (ft) - MLLW')
+  plt.title(title)
   plt.legend()
   plt.show()
