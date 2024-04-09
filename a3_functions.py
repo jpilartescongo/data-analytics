@@ -309,3 +309,24 @@ def plot_rf_prediction(y_pred_rf, y_test, title):
   plt.title(title)
   plt.legend()
   plt.show()
+
+# -------------------------------------------------------------
+# function to calculate the statistics of rf model performance
+def rf_statistical_results(model_name, y_test, y_pred):
+  mse = mean_squared_error(y_test, y_pred)
+  r2 = r2_score(y_test, y_pred)
+  mae = mean_absolute_error(y_test, y_pred)
+  rmse = np.sqrt(mse)
+  medae = median_absolute_error(y_test, y_pred)
+  residuals = y_test - y_pred
+  residual_std = np.std(residuals)
+  maxerr = np.max(np.abs(residuals))
+  
+  print(model_name)
+  print('Mean squared error (MSE):', mse)
+  print('R-squared (R2):', r2)
+  print('Mean absolute error (MAE):', mae)
+  print('Root mean squared error (RMSE):', rmse)
+  print('Median absolute error (MedAE):', medae)
+  print('Residual standard deviation:', residual_std)
+  print('Maximum error (MaxErr):', maxerr)
