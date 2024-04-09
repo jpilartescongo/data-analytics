@@ -338,3 +338,27 @@ def rf_statistical_results(model_name, y_test, y_pred):
   print('Median absolute error (MedAE):', medae)
   print('Residual standard deviation:', residual_std)
   print('Maximum error (MaxErr):', maxerr)
+
+# -------------------------------------------------------------
+# function to calculate the central frequency of the model
+def central_frequency(y_pred, y_true):
+  errors = np.abs(y_pred - y_true)
+  num_errors = np.sum(errors <= 0.492126)
+  total_predictions = len(y_pred)
+  central_frequency = (num_errors / total_predictions) * 100
+  return central_frequency
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
