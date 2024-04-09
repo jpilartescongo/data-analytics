@@ -268,25 +268,20 @@ def statistical_results(model_name, y_test, y_pred):
   print('Maximum error (MaxErr):', maxerr)
 
 # -------------------------------------------------------------
-# function to load training and test dataset for predictions
-def data_loader(training_zip_path, test_csv_path):
-  
-  # unzip and load training dataset
-  os.system(f'unzip {training_zip_path} -d /content/data-analytics')
-  training_dataframe = pd.read_csv('/content/data-analytics/bhp_training_3.csv')
-  training_dataframe.set_index('date_time', inplace=True)
-  training_dataframe.index = pd.to_datetime(training_dataframe.index)
-  training_dataframe['target_water_level_12H'] = training_dataframe['water_level'].shift(-120)
-  training_dataframe.dropna(inplace=True)
+# function to plot lstm loss graph based on learning history
+def lstm_loss(history, title):
+  train_loss = history.history['loss']
+  val_loss = history.history['val_loss']
 
-  # load test dataset
-  test_dataframe = pd.read_csv(test_csv_path)
-  test_dataframe.set_index('date_time', inplace=True)
-  test_dataframe.index = pd.to_datetime(test_dataframe.index)
-  test_dataframe['target_water_level_12H'] = test_dataframe['water_level'].shift(-120)
-  test_dataframe.dropna(inplace=True)
-
-  return training_dataframe, test_dataframe
+  plt.figure(figsize=(8, 6))
+  plt.plot(range(1, len(train_loss) + 1), train_loss, label='Loss (training)')
+  plt.plot(range(1, len(val_loss) + 1), val_loss, label='Loss (validation)')
+  plt.xlabel('Epoch')
+  plt.ylabel('Loss')
+  plt.title(title)
+  plt.legend()
+  plt.show()
 
 
-
+# -------------------------------------------------------------
+# function to plot rf loss graph based on learning history
