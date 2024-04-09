@@ -245,9 +245,48 @@ def select_records(dataframe):
   selected_records.drop(columns=['time'], inplace=True)
 
   return selected_records
+  
+# -------------------------------------------------------------
+# function to calculate the statistics of model performance
+def statistical_results(model_name, y_test, y_pred):
+  mse = mean_squared_error(y_test, y_pred)
+  r2 = r2_score(y_test, y_pred)
+  mae = mean_absolute_error(y_test, y_pred)
+  rmse = np.sqrt(mse)
+  medae = median_absolute_error(y_test, y_pred)
+  residuals = y_test - y_pred
+  residual_std = np.std(residuals)
+  maxerr = np.max(np.abs(residuals))
+  
+  print(model_name)
+  print('Mean squared error (MSE):', mse)
+  print('R-squared (R2):', r2)
+  print('Mean absolute error (MAE):', mae)
+  print('Root mean squared error (RMSE):', rmse)
+  print('Median absolute error (MedAE):', medae)
+  print('Residual standard deviation:', residual_std)
+  print('Maximum error (MaxErr):', maxerr)
 
+# -------------------------------------------------------------
+# function to load training and test dataset for predictions
+def data_loader(training_zip_path, test_csv_path):
+  
+  # unzip and load training dataset
+  os.system(f'unzip {training_zip_path} -d /content/data-analytics')
+  training_dataframe = pd.read_csv('/content/data-analytics/bhp_training_3.csv')
+  training_dataframe.set_index('date_time', inplace=True)
+  training_dataframe.index = pd.to_datetime(training_dataframe.index)
+  training_dataframe['target_water_level_12H'] = training_dataframe['water_level'].shift(-120)
+  training_dataframe.dropna(inplace=True)
 
+  # load test dataset
+  test_dataframe = pd.read_csv(test_csv_path)
+  test_dataframe.set_index('date_time', inplace=True)
+  test_dataframe.index = pd.to_datetime(test_dataframe.index)
+  test_dataframe['target_water_level_12H'] = test_dataframe['water_level'].shift(-120)
+  test_dataframe.dropna(inplace=True)
 
+  return training_dataframe, test_dataframe
 
 
 
