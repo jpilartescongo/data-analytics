@@ -34,7 +34,7 @@ def geotag_histograms(dataframe, y_lim):
 
 #---------------------------------------------------------------------------
 # function that outputs the equations of the regression model for predicting
-def print_equations(coefficients, intercepts, features):
+def print_equations(coefficients, intercepts, features, targets):
     for i, target in enumerate(y.columns):
         terms = [f"{coefficients[i][j]:.4f}*{features[j]}" for j in range(len(features))]
         equation = " + ".join(terms)
