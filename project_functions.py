@@ -4,7 +4,7 @@ import scipy.stats as stats
 import os, pandas as pd, sys
 import matplotlib.pyplot as plt
 
-#--------------------------------------------------------------------------
+#---------------------------------------------------------------------------
 # function that creates histogram plots for an input dataframe with geotags
 def geotag_histograms(dataframe, y_lim):
     # Create a figure with 3 subplots in 1 row
@@ -32,3 +32,10 @@ def geotag_histograms(dataframe, y_lim):
     plt.tight_layout()
     plt.show()
 
+#---------------------------------------------------------------------------
+# function that outputs the equations of the regression model for predicting
+def print_equations(coefficients, intercepts, features):
+    for i, target in enumerate(y.columns):
+        terms = [f"{coefficients[i][j]:.4f}*{features[j]}" for j in range(len(features))]
+        equation = " + ".join(terms)
+        print(f"{target} = {intercepts[i]:.4f} + {equation}")
