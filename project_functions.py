@@ -1,8 +1,8 @@
 # ancillary libraries/modules for final project
 import numpy as np
 import scipy.stats as stats
+import os, pandas as pd, sys
 import matplotlib.pyplot as plt
-import os, pandas as pd, sys, np
 
 # function that creates histogram plots for a dataframe
 def geotag_histograms(dataframe, y_lim):
