@@ -1,10 +1,11 @@
-# ancillary libraries/modules for final project
+# ancillary libraries/modules for the final project
 import numpy as np
 import scipy.stats as stats
 import os, pandas as pd, sys
 import matplotlib.pyplot as plt
 
-# function that creates histogram plots for a dataframe
+#--------------------------------------------------------------------------
+# function that creates histogram plots for an input dataframe with geotags
 def geotag_histograms(dataframe, y_lim):
     # Create a figure with 3 subplots in 1 row
     fig, axs = plt.subplots(nrows=1, ncols=3, figsize=(15, 5))
@@ -30,3 +31,4 @@ def geotag_histograms(dataframe, y_lim):
     # adjust the plot and display results
     plt.tight_layout()
     plt.show()
+
