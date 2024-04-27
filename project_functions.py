@@ -45,7 +45,7 @@ def print_equations(coefficients, intercepts, features, targets):
 # dataframe; it takes two inputs: the dataframe variable name and the names
 # of features to plot (array of strings that represent the variables/fields)
 def create_pairwise_correlation(dataframe, attributes):
-    correlation_matrix = dataframe[subset].corr()
+    correlation_matrix = dataframe[attributes].corr()
     plt.figure(figsize=(6, 5))
     sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='coolwarm',
                 square=True, linewidths=.3)
