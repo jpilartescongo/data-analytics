@@ -1,5 +1,6 @@
 # ancillary libraries/modules for the final project
 import numpy as np
+import seaborn as sns
 import scipy.stats as stats
 import os, pandas as pd, sys
 import matplotlib.pyplot as plt
