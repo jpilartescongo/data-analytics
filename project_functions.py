@@ -143,7 +143,7 @@ def dji_linear_regression_prediction(dataframe, model):
   return dataframe
 
 def dji_linear_regression_pred(dataframe):
-  file_to_predict = load_csv_file(new_csv_path2)
+  file_to_predict = load_csv_file(csv_file_path)
   corrected_data = dji_linear_regression_prediction(file_to_predict, model)
   corrected_data.drop(['lat', 'lon', 'alt', 'h_acc', 'v_acc'], axis=1, inplace=True)
   predicted_data = corrected_data[['img', 'lat_pred', 'lon_pred', 'alt_pred', 'h_acc_pred',
