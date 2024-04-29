@@ -91,12 +91,10 @@ def plot_lat_lon_alt_differences(aligned_data, fields):
     
 #---------------------------------------------------------------------------
 # function that creates actual versus predicted horizontal/vertical accuracy
-def plot_acc_differences(dataframe):
+def plot_acc_differences(dataframe, y_lim):
     fig, ax = plt.subplots(1, 2, figsize=(10, 4))
-    
     x_label, y_label = 'Corresponding UAS Image (#)', 'Accuracy (m)'
     legend_label = ['Predicted', 'Actual']
-    y_lim = (0, 0.250)
     
     # plot for horizontal accuracy
     ax[0].plot(dataframe['h_acc_pred'], label=legend_label[0])
