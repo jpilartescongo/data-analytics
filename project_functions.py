@@ -142,26 +142,3 @@ def dji_linear_regression_prediction(csv_file_path, model):
     predicted_data = data[['img', 'lat_pred', 'lon_pred', 'alt_pred', 'h_acc_pred',
                            'v_acc_pred', 'omega', 'phi', 'kappa']]
     return predicted_data
-
-#---------------------------------------------------------------------------
-# function that runs performance metrics on dji predictions versus ground
-# truth data and outputs results (lat, lon, alt, h_acc, and v_acc)
-def get_prediction_metrics(linear_prediction_df, ground_truth_df, aligned_data):
-    mse2 = np.mean((linear_prediction_df2 - ground_truth_df2)**2)
-    rmse2 = np.sqrt(mse2)
-    mae2 = np.mean(np.abs(linear_prediction_df2 - ground_truth_df2))
-    return rmse2
-    
-    lat_rmse2 = get_comparison_metrics2(aligned_data['lat_pred'], aligned_data['lat'])
-    lon_rmse2 = get_comparison_metrics2(aligned_data['lon_pred'], aligned_data['lon'])
-    alt_rmse2 = get_comparison_metrics2(aligned_data['alt_pred'], aligned_data['alt'])
-    h_acc_rmse2 = get_comparison_metrics2(aligned_data['h_acc_pred'], aligned_data['h_acc'])
-    v_acc_rmse2 = get_comparison_metrics2(aligned_data['v_acc_pred'], aligned_data['v_acc'])
-    
-    print('The RMSE values for latitude, longitude, and altitude are as follows:')
-    print(f'Latitude RMSE (DJI): {lat_rmse2}')
-    print(f'Longitude RMSE (DJI): {lon_rmse2}')
-    print(f'Altitude RMSE (DJI): {alt_rmse2}')
-    print(f'Horizontal Accuracy RMSE (DJI): {h_acc_rmse2}')
-    print(f'Vertical Accuracy (DJI): {v_acc_rmse2}')
-
