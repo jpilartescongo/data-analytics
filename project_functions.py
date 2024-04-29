@@ -54,3 +54,42 @@ def create_pairwise_correlation(dataframe, attributes):
     plt.title('Pairwise Correlation Matrix (Uncorrected Dataframe)', fontsize=13)
     plt.tight_layout()
     plt.show()
+
+#---------------------------------------------------------------------------
+# function that creates actual versus predicted horizontal/vertical accuracy
+def plot_acc_differences(dataframe):
+    fig, ax = plt.subplots(1, 2, figsize=(10, 4))
+    
+    x_label, y_label = 'Corresponding UAS Image (#)', 'Accuracy (m)'
+    legend_label = ['Predicted', 'Actual']
+    y_lim = (0, 0.250)
+    
+    # plot for horizontal accuracy
+    ax[0].plot(dataframe['h_acc_pred'], label=legend_label[0])
+    ax[0].plot(dataframe['h_acc'], label=legend_label[1])
+    ax[0].set_title('Horizontal Accuracy')
+    ax[0].set_ylim(y_lim)
+    ax[0].set_xlabel(x_label)
+    ax[0].set_ylabel(y_label)
+    
+    # plot for vertical accuracy
+    ax[1].plot(dataframe['v_acc_pred'], label=legend_label[0])
+    ax[1].plot(dataframe['v_acc'], label=legend_label[1])
+    ax[1].set_title('Vertical Accuracy')
+    ax[1].set_ylim(y_lim)
+    ax[1].set_xlabel(x_label)
+    ax[1].set_ylabel(y_label)
+    
+    handles, labels = ax[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc='upper center', bbox_to_anchor=(0.5, -0.05), ncol=2)
+    plt.tight_layout()
+    plt.show()
+    
+
+
+
+
+
+
+
+
