@@ -71,8 +71,24 @@ def plot_alt_differences(predicted_df, actual_df, title):
 
 #---------------------------------------------------------------------------
 # function that creates actual versus predicted lat, lon, and alt values
-def plot_lat_lon_alt_differences(fields, ):
-
+def plot_lat_lon_alt_differences(aligned_data, fields):
+    fig, ax = plt.subplots(1, 3, figsize=(15, 5))
+    pred_labels = [f'{field}_pred' for field in fields]
+    actual_labels = fields
+    titles = ['Latitude', 'Longitude', 'Altitude']
+    
+    for i, (pred, actual, title) in enumerate(zip(pred_labels, actual_labels, titles)):
+        ax[i].plot(aligned_data[pred], label='Predicted')
+        ax[i].plot(aligned_data[actual], label='Actual')
+        ax[i].set_title(title)
+        ax[i].set_xlabel('Corresponding UAS Image (#)')
+        ax[i].set_ylabel('Value')
+    
+    handles, labels = ax[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc='upper center', bbox_to_anchor=(0.5, -0.05), ncol=2)
+    plt.tight_layout()
+    plt.show()
+    
 #---------------------------------------------------------------------------
 # function that creates actual versus predicted horizontal/vertical accuracy
 def plot_acc_differences(dataframe):
