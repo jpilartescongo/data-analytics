@@ -70,6 +70,10 @@ def plot_alt_differences(predicted_df, actual_df, title):
     plt.show()
 
 #---------------------------------------------------------------------------
+# function that creates actual versus predicted lat, lon, and alt values
+def plot_lat_lon_alt_differences(fields, ):
+
+#---------------------------------------------------------------------------
 # function that creates actual versus predicted horizontal/vertical accuracy
 def plot_acc_differences(dataframe):
     fig, ax = plt.subplots(1, 2, figsize=(10, 4))
