@@ -54,6 +54,20 @@ def create_pairwise_correlation(dataframe, attributes):
     plt.title('Pairwise Correlation Matrix (Uncorrected Dataframe)', fontsize=13)
     plt.tight_layout()
     plt.show()
+    
+#---------------------------------------------------------------------------
+# function to plot altitude differences (actual vs predicted) for wingtra
+# dataset; for simplicity, results filter only the 30 geotag corrections
+def plot_alt_differences(predicted_df, actual_df, title):
+    plt.figure(figsize=(20, 10))
+    x = np.arange(30)
+    plt.bar(x, predicted_df['alt_pred'][:30], label='Predicted', color='coral', width=0.3)
+    plt.bar(x + 0.4, actual_df['alt'][:30], label='Actual', color='darkorchid', width=0.3)
+    plt.legend()
+    plt.title(title, fontsize=20)
+    plt.xlabel('Corresponding UAS Image (#)', fontsize=15)
+    plt.ylabel('UAS Altitude (m)', fontsize=15)
+    plt.show()
 
 #---------------------------------------------------------------------------
 # function that creates actual versus predicted horizontal/vertical accuracy
