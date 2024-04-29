@@ -118,6 +118,12 @@ def plot_acc_differences(dataframe, y_lim):
     plt.show()
     
 
+#---------------------------------------------------------------------------
+# supplementary functions that address prior issues with modelling wingtra
+# and dji all within the same notebook; this is not the most efficient way
+# of addressing the problem but it is a temporary solution
+
+
 
 
 
