@@ -124,6 +124,11 @@ def plot_acc_differences(dataframe, y_lim):
 # of addressing the problem but it is a temporary solution; these functions
 # predict the latitude, longitude, altitude, and horizontal and vertical
 # accuracies of a new dataset using the patterns learned from the model
+def load_csv_file(csv_file_path):
+  data = pd.read_csv(csv_file_path)
+  data.columns = new_field_names
+  return data
+
 def dji_linear_regression_prediction(dataframe, model):
   features = dataframe[['lat', 'lon', 'alt', 'h_acc', 'v_acc']]
   features.columns = ['lat_unc', 'lon_unc', 'alt_unc', 'h_acc_unc', 'v_acc_unc']
