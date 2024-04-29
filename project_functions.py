@@ -129,27 +129,20 @@ def load_csv_file(csv_file_path):
   data.columns = new_field_names
   return data
 
-def dji_linear_regression_prediction(dataframe, model):
-  features = dataframe[['lat', 'lon', 'alt', 'h_acc', 'v_acc']]
-  features.columns = ['lat_unc', 'lon_unc', 'alt_unc', 'h_acc_unc', 'v_acc_unc']
-  # run the prediction model then store
-  # predictions back into the dataframe
-  predictions = model.predict(features)
-  dataframe['lat_pred'] = predictions[:, 0]
-  dataframe['lon_pred'] = predictions[:, 1]
-  dataframe['alt_pred'] = predictions[:, 2]
-  dataframe['h_acc_pred'] = predictions[:, 3]
-  dataframe['v_acc_pred'] = predictions[:, 4]
-  return dataframe
-
-def dji_linear_regression_pred(dataframe):
-  file_to_predict = load_csv_file(csv_file_path)
-  corrected_data = dji_linear_regression_prediction(file_to_predict, model)
-  corrected_data.drop(['lat', 'lon', 'alt', 'h_acc', 'v_acc'], axis=1, inplace=True)
-  predicted_data = corrected_data[['img', 'lat_pred', 'lon_pred', 'alt_pred', 'h_acc_pred',
-                                   'v_acc_pred', 'omega', 'phi', 'kappa']]
-  return predicted_data
-
+def dji_linear_regression_prediction(csv_file_path, model):
+    data = load_csv_file(csv_file_path)
+    features = data[['lat', 'lon', 'alt', 'h_acc', 'v_acc']]
+    features.columns = ['lat_unc', 'lon_unc', 'alt_unc', 'h_acc_unc', 'v_acc_unc']
+    predictions = model.predict(features)
+    data['lat_pred'] = predictions[:, 0]
+    data['lon_pred'] = predictions[:, 1]
+    data['alt_pred'] = predictions[:, 2]
+    data['h_acc_pred'] = predictions[:, 3]
+    data['v_acc_pred'] = predictions[:, 4]
+    data.drop(['lat', 'lon', 'alt', 'h_acc', 'v_acc'], axis=1, inplace=True)
+    predicted_data = data[['img', 'lat_pred', 'lon_pred', 'alt_pred', 'h_acc_pred',
+                           'v_acc_pred', 'omega', 'phi', 'kappa']]
+    return predicted_data
 
 
 
