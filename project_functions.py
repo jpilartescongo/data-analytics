@@ -126,7 +126,7 @@ def plot_acc_differences(dataframe, y_lim):
 # accuracies of a new dataset using the patterns learned from the model
 def load_csv_file(csv_file_path):
   data = pd.read_csv(csv_file_path)
-  data.columns = new_field_names
+  data.columns = ['img', 'lat', 'lon', 'alt', 'omega', 'phi', 'kappa', 'h_acc', 'v_acc']
   return data
 
 def dji_linear_regression_prediction(csv_file_path, model):
